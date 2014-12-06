@@ -1,23 +1,13 @@
 var Loop = require('./lib/gameloop'),
     input = require('./game/input'),
-    renderer = require('./game/renderer'),
-    GameObject = require('./lib/quick-and-dirty-gameobject');
+    renderer = require('./game/renderer');
 
 var loop = new Loop();
 
 renderer.infectDom('game');
 
-var playerFactory = GameObject.createFactory(
-    require('./game/components/playerInput'),
-    require('./game/components/playerWeapon'),
-    require('./game/components/position'),
-    require('./game/components/playerRender')
-);
-
-var playerShotFactory = GameObject.createFactory(
-    require('./game/components/position'),
-    require('./game/components/playerShotRender')
-);
+var playerFactory = require('./game/entities/player'),
+    playerShotFactory =require('./game/entities/playerShot');
 
 var player = playerFactory({
     x : 100,
