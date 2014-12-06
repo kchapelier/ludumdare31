@@ -16,12 +16,11 @@ var GameObject = {
                 allComponents.push(arguments[i]);
             }
 
-            console.log(allComponents);
-
             return GameObject.create.apply(GameObject, allComponents);
         };
     },
     create : function(components) {
+        var initFunctions = [];
         var updateFunctions = [];
         var postUpdateFunctions = [];
         var preRenderFunctions = [];
@@ -61,7 +60,9 @@ var GameObject = {
 
             for(var key in component) {
                 if(component.hasOwnProperty(key)) {
-                    if(key === 'update') {
+                    if(key === 'initialize') {
+                        initFunctions.push(component[key]);
+                    } else if(key === 'update') {
                         updateFunctions.push(component[key]);
                     } else if(key === 'postUpdate') {
                         postUpdateFunctions.push(component[key]);
@@ -77,6 +78,12 @@ var GameObject = {
                 }
             }
         }
+
+        for(var i = 0; i < initFunctions.length; i++) {
+            initFunctions[i](object);
+        }
+
+        initFunctions = null;
 
         return object;
     }
