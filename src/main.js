@@ -1,7 +1,7 @@
 var Loop = require('./lib/gameloop'),
     input = require('./game/input'),
     renderer = require('./game/renderer'),
-    objectCollection = require('./game/objectCollection');
+    objectCollection = require('./lib/objectCollection');
 
 var loop = new Loop();
 
