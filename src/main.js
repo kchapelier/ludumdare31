@@ -17,12 +17,6 @@ var playerShotArray = objectCollection.getArray('playerShot'),
 var playerFactory = require('./game/entities/player'),
     enemyFactory = require('./game/entities/enemy');
 
-//TODO constrain the player inside the screen
-//TODO collision playerShot > enemy
-//TODO collision enemyShot > player
-//TODO dead state on player and enemy shots
-//TODO remove dead shots from collection
-
 var score = 0;
 
 var player = playerFactory({

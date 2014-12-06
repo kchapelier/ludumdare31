@@ -1,11 +1,15 @@
 "use strict";
 
-var PIXI = require('pixi.js');
+var PIXI = require('pixi.js'),
+    width = 600,
+    height = 400;
 
-var renderer = PIXI.autoDetectRenderer(600, 400);
-var stage = new PIXI.Stage(0xFFFFFF);
+var renderer = PIXI.autoDetectRenderer(width, height),
+    stage = new PIXI.Stage(0xFFFFFF);
 
 module.exports = {
+    screenWidth : width,
+    screenHeight : height,
     infectDom : function(domElement) {
         if(typeof domElement === 'string') {
             domElement = document.getElementById(domElement);
