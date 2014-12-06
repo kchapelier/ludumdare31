@@ -18,29 +18,20 @@ var player = playerFactory({
     y : 100
 });
 
-var player2 = playerFactory({
-    x : 300,
-    y : 200,
-    speed : 200
-});
-
 renderer.addElement(player.sprite);
-renderer.addElement(player2.sprite);
+renderer.addElement(player.hitbox);
 
 loop.update = function(dt) {
     input.update(dt);
     player.update(dt);
-    player2.update(dt);
 };
 
 loop.postUpdate = function(dt) {
     player.postUpdate(dt);
-    player2.postUpdate(dt);
 };
 
 loop.render = function(dt) {
     player.render(dt);
-    player2.render(dt);
     renderer.render(dt);
 };
 

@@ -1,6 +1,9 @@
 var input = require('../input');
 
 module.exports = {
+    focused : false,
+    normalSpeed : 250,
+    focusedSpeed : 100,
     update : function(element, dt) {
         var directionIntent = element.directionIntent;
 
@@ -22,6 +25,14 @@ module.exports = {
 
         if(directionIntent.x !== 0 || directionIntent.y !== 0) {
             directionIntent.normalize();
+        }
+
+        element.focused = !!input.currentInput.FOCUS;
+
+        if(element.focused) {
+            element.speed = element.focusedSpeed;
+        } else {
+            element.speed = element.normalSpeed
         }
     }
 };
