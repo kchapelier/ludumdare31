@@ -83,14 +83,14 @@ Loop.prototype.update = function (deltaTime) {
 };
 
 /**
- * Method first called after the update and before the preRender on each frame
+ * Method called after the update and before the preRender on each frame
  * @param {float} deltaTime
  */
 Loop.prototype.postUpdate = function (deltaTime) {
 };
 
 /**
- * Method first called after the postUpdate and before the render on each frame
+ * Method called after the postUpdate and before the render on each frame
  * @param {float} deltaTime
  */
 Loop.prototype.preRender = function (deltaTime) {
