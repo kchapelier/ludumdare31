@@ -1,23 +1,18 @@
 var Loop = require('./lib/gameloop'),
     input = require('./game/input'),
     renderer = require('./game/renderer'),
-    objectCollection = require('./lib/objectCollection');
-
-var loop = new Loop();
+    objectCollection = require('./game/objectCollection');
 
 renderer.infectDom('game');
 
-objectCollection.on('add.player', function(element) {
-    renderer.addElement(element.sprite);
-    renderer.addElement(element.hitbox);
-});
+var loop = new Loop();
 
-objectCollection.on('add.playerShot', function(element) {
-    renderer.addElement(element.sprite);
-});
+// Array of entities
 
-var playerArray = objectCollection.getArray('playerShot');
-var playerShotArray = objectCollection.getArray('playerShot');
+var playerArray = objectCollection.getArray('playerShot'),
+    playerShotArray = objectCollection.getArray('playerShot');
+
+// Entity factories
 
 var playerFactory = require('./game/entities/player'),
     playerShotFactory =require('./game/entities/playerShot');
