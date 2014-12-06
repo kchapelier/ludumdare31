@@ -1,8 +1,8 @@
 "use strict";
 
 var PIXI = require('pixi.js'),
-    width = 600,
-    height = 400;
+    width = 800,
+    height = 600;
 
 var renderer = PIXI.autoDetectRenderer(width, height),
     stage = new PIXI.Stage(0xFFFFFF);

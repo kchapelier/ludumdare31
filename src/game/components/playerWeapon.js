@@ -9,7 +9,7 @@ module.exports = {
             collection.add('playerShot', shotFactory({
                 x : element.x,
                 y : element.y - 20,
-                speed : 350,
+                speed : 550,
                 directionIntent : { x : 0, y : -1 }
             }));
         }
