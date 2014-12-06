@@ -1,17 +1,26 @@
 "use strict";
 
-var collection = require('../objectCollection'),
-    shotFactory = require('../entities/enemyShot');
+var Pattern = require('../patterns/pattern'),
+    collection = require('../objectCollection');
+
+var player = null;
 
 module.exports = {
+    initialize : function (element) {
+        element.pattern = new Pattern(element, { x: 0, y: 0});
+    },
     update : function(element) {
-        if(Math.random() > 0.92) {
-            collection.add('enemyShot', shotFactory({
-                x : element.x,
-                y : element.y,
-                speed : 400,
-                directionIntent : { x : 0, y : 1 }
-            }));
+        if(player === null) {
+            player = collection.getArray('player')[0];
+            element.pattern.setDestination(player);
+        }
+
+        element.pattern.update();
+
+        if(Math.random() > 0.3) {
+            element.pattern
+                .setAngle(0, false)
+                .randomShot(3, 0.8, 0, true);
         }
     }
 };
