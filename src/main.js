@@ -15,9 +15,13 @@ var playerShotArray = objectCollection.getArray('playerShot'),
 // Entity factories
 
 var playerFactory = require('./game/entities/player'),
-    enemyFactory = require('./game/entities/enemy');
+    enemyFactory = require('./game/entities/enemy'),
+    scoreFactory = require('./game/entities/scoreIndicator');
 
 var score = 0;
+var scoreElement = new scoreFactory();
+
+renderer.addElement(scoreElement.sprite);
 
 var player = playerFactory({
     x : 100,
@@ -88,14 +92,15 @@ loop.postUpdate = function(dt) {
         if(diffY < sizeEnemyHitbox && diffX < sizeEnemyHitbox) {
             objectCollection.remove('playerShot', shot);
             score+= 100;
-
-            console.log(score);
         }
     });
+
+    scoreElement.setScore(score);
 };
 
 loop.render = function(dt) {
     // Entities
+    scoreElement.render(dt);
     player.render(dt);
     enemy.render(dt);
 
