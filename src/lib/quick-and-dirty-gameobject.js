@@ -1,6 +1,26 @@
 "use strict";
 
 var GameObject = {
+    createFactory : function(baseComponents) {
+        var components = arguments;
+
+        return function(otherComponents) {
+            var allComponents = [],
+                i;
+
+            for(i = 0; i < components.length; i++) {
+                allComponents.push(components[i]);
+            }
+
+            for(i = 0; i < arguments.length; i++) {
+                allComponents.push(arguments[i]);
+            }
+
+            console.log(allComponents);
+
+            return GameObject.create.apply(GameObject, allComponents);
+        };
+    },
     create : function(components) {
         var updateFunctions = [];
         var postUpdateFunctions = [];

@@ -19,11 +19,16 @@ var drawComponent = {
     }
 };
 
-var player = GameObject.create(
+var playerFactory = GameObject.createFactory(
     require('./game/components/playerInput'),
     require('./game/components/position'),
     drawComponent
 );
+
+var player = playerFactory({
+    x : 300,
+    y : 200
+});
 
 renderer.addElement(sprite);
 
