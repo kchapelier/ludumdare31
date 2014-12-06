@@ -1,16 +1,8 @@
 var Loop = require('./lib/gameloop'),
-    Input = require('./lib/input'),
+    input = require('./game/input'),
     PIXI = require('pixi.js');
 
 var loop = new Loop();
-
-var input = new Input({
-    UP : { keys : ['up', 'z'], group : 'axisV' },
-    DOWN : { keys : ['down', 's'], group : 'axisV' },
-    LEFT : { keys : ['left', 'q'], group : 'axisH' },
-    RIGHT : { keys : ['right', 'd'], group : 'axisH' }
-});
-
 
 var renderer = PIXI.autoDetectRenderer(600, 400);
 var stage = new PIXI.Stage(0xFFFFFF);
