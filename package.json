@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify src/main.js --s main > build/main.js",
+    "build": "browserify src/main.js --d --s main > build/main.js",
     "watch": "watchify src/main.js --s main -o build/main.js -v"
   },
   "repository": {

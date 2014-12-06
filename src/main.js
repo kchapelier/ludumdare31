@@ -1,28 +1,16 @@
 var Loop = require('./lib/gameloop'),
     input = require('./game/input'),
     renderer = require('./game/renderer'),
-    GameObject = require('./lib/quick-and-dirty-gameobject'),
-    PIXI = require('pixi.js');
+    GameObject = require('./lib/quick-and-dirty-gameobject');
 
 var loop = new Loop();
 
-
 renderer.infectDom('game');
-
-var texture = PIXI.Texture.fromImage('./assets/images/placeholder.png', false);
-var sprite = new PIXI.Sprite(texture);
-
-var drawComponent = {
-    render : function (element, dt) {
-        sprite.x = Math.round(element.x);
-        sprite.y = Math.round(element.y);
-    }
-};
 
 var playerFactory = GameObject.createFactory(
     require('./game/components/playerInput'),
     require('./game/components/position'),
-    drawComponent
+    require('./game/components/playerRender')
 );
 
 var player = playerFactory({
@@ -30,7 +18,7 @@ var player = playerFactory({
     y : 200
 });
 
-renderer.addElement(sprite);
+renderer.addElement(player.sprite);
 
 loop.update = function(dt) {
     input.update(dt);
