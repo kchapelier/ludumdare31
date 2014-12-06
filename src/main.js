@@ -1,10 +1,23 @@
 var Loop = require('./lib/gameloop'),
     input = require('./game/input'),
-    renderer = require('./game/renderer');
+    renderer = require('./game/renderer'),
+    objectCollection = require('./game/objectCollection');
 
 var loop = new Loop();
 
 renderer.infectDom('game');
+
+objectCollection.on('add.player', function(element) {
+    renderer.addElement(element.sprite);
+    renderer.addElement(element.hitbox);
+});
+
+objectCollection.on('add.playerShot', function(element) {
+    renderer.addElement(element.sprite);
+});
+
+var playerArray = objectCollection.getArray('playerShot');
+var playerShotArray = objectCollection.getArray('playerShot');
 
 var playerFactory = require('./game/entities/player'),
     playerShotFactory =require('./game/entities/playerShot');
@@ -20,9 +33,8 @@ var shot = playerShotFactory({
     directionIntent : { x : 0, y : -1 }
 });
 
-renderer.addElement(player.sprite);
-renderer.addElement(player.hitbox);
-renderer.addElement(shot.sprite);
+objectCollection.add('player', player);
+objectCollection.add('playerShot', shot);
 
 loop.update = function(dt) {
     // Update the inputs
