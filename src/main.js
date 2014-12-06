@@ -1,6 +1,7 @@
 var Loop = require('./lib/gameloop'),
     input = require('./game/input'),
     renderer = require('./game/renderer'),
+    GameObject = require('./lib/quick-and-dirty-gameobject'),
     PIXI = require('pixi.js');
 
 var loop = new Loop();
@@ -11,33 +12,33 @@ renderer.infectDom('game');
 var texture = PIXI.Texture.fromImage('./assets/images/placeholder.png', false);
 var sprite = new PIXI.Sprite(texture);
 
-renderer.addElement(sprite);
+var drawComponent = {
+    render : function (element, dt) {
+        sprite.x = Math.round(element.x);
+        sprite.y = Math.round(element.y);
+    }
+};
 
-var posX = 0;
-var posY = 0;
+var player = GameObject.create(
+    require('./game/components/playerInput'),
+    require('./game/components/position'),
+    drawComponent
+);
+
+renderer.addElement(sprite);
 
 loop.update = function(dt) {
     input.update(dt);
-    if(input.currentInput.UP) {
-        posY-= dt;
-    } else if(input.currentInput.DOWN) {
-        posY+= dt;
-    }
-
-    if(input.currentInput.LEFT) {
-        posX-= dt;
-    } else if(input.currentInput.RIGHT) {
-        posX+= dt;
-    }
+    player.update(dt);
 };
 
-loop.postUpdate = function() {
-    sprite.x = Math.round(posX);
-    sprite.y = Math.round(posY);
+loop.postUpdate = function(dt) {
+    player.postUpdate(dt);
 };
 
-loop.render = function() {
-    renderer.render();
+loop.render = function(dt) {
+    player.render(dt);
+    renderer.render(dt);
 };
 
 loop.start();
