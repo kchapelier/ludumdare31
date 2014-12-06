@@ -3,7 +3,8 @@
 var Pattern = require('../patterns/pattern'),
     collection = require('../objectCollection'),
     renderer = require('../renderer'),
-    Victor = require('victor');
+    Victor = require('victor'),
+    Sequence = require('../patterns/sequence');
 
 var player = null;
 
@@ -13,6 +14,12 @@ module.exports = {
     moveCounter : 0,
     initialize : function (element) {
         element.pattern = new Pattern(element, { x: 0, y: 0});
+        element.sequence = new Sequence([
+            ['singleShot', 0, false],
+            ['wait', 100],
+            ['singleShot', 0, true],
+            ['wait', 50],
+        ], 0);
     },
     update : function(element, dt) {
         if(player === null) {
@@ -20,15 +27,10 @@ module.exports = {
             element.pattern.setDestination(player);
         }
 
+
+
         element.pattern.update();
-
-
-        if(Math.random() > 0.95) {
-            element.pattern
-                .setAngle(0, false)
-                .randomShot(1, 0.5, 0, true);
-        }
-
+        element.sequence.update(element.pattern, dt);
 
         var margin = 20,
             distance = 350;
