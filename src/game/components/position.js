@@ -1,3 +1,5 @@
+"use strict";
+
 var Victor = require('victor');
 
 module.exports = {
@@ -14,8 +16,9 @@ module.exports = {
         }
     },
     update : function(element, dt) {
-        var mult = 1000 / element.speed;
-        element.x+= element.directionIntent.x * dt / mult;
-        element.y+= element.directionIntent.y * dt / mult;
+        var multiplier = 1000 / element.speed;
+
+        element.x+= element.directionIntent.x * dt / multiplier;
+        element.y+= element.directionIntent.y * dt / multiplier;
     }
 };
