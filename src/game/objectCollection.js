@@ -10,4 +10,12 @@ collection.on('add.playerShot', function(element) {
     renderer.addElement(element.sprite);
 });
 
+collection.on('add.enemy', function(element) {
+    renderer.addElement(element.sprite);
+});
+
+collection.on('add.enemyShot', function(element) {
+    renderer.addElement(element.sprite);
+});
+
 module.exports = collection;
