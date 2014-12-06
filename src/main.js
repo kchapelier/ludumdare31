@@ -3,14 +3,25 @@ var Loop = require('./lib/gameloop'),
 
 var loop = new Loop();
 
-var renderer = PIXI.autoDetectRenderer(800, 600);
+var renderer = PIXI.autoDetectRenderer(600, 400);
 var stage = new PIXI.Stage(0xFFFFFF);
 
 var container = document.getElementById('game');
 container.appendChild(renderer.view);
 
+var texture = PIXI.Texture.fromImage('./assets/images/placeholder.png', false);
+
+var sprite = new PIXI.Sprite(texture);
+
+stage.addChild(sprite);
+
 loop.update = function(dt) {
-    console.log(dt);
+    sprite.x = dt * 5;
+    sprite.y = dt * 5;
 };
 
-//loop.start();
+loop.render = function() {
+    renderer.render(stage);
+};
+
+loop.start();
