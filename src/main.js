@@ -9,6 +9,7 @@ renderer.infectDom('game');
 
 var playerFactory = GameObject.createFactory(
     require('./game/components/playerInput'),
+    require('./game/components/playerWeapon'),
     require('./game/components/position'),
     require('./game/components/playerRender')
 );

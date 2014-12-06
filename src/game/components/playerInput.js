@@ -4,6 +4,9 @@ module.exports = {
     focused : false,
     normalSpeed : 250,
     focusedSpeed : 100,
+    lastShot : 0,
+    shotFrequency : 200,
+    shooting : false,
     update : function(element, dt) {
         var directionIntent = element.directionIntent;
 
@@ -33,6 +36,14 @@ module.exports = {
             element.speed = element.focusedSpeed;
         } else {
             element.speed = element.normalSpeed
+        }
+
+        if(element.lastShot > 0) {
+            element.shooting = false;
+            element.lastShot-= dt;
+        } else if(input.currentInput.SHOOT) {
+            element.shooting = true;
+            element.lastShot = element.shotFrequency;
         }
     }
 };
