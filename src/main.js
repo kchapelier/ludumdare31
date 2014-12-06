@@ -9,8 +9,7 @@ var loop = new Loop();
 
 // Array of entities
 
-var playerArray = objectCollection.getArray('playerShot'),
-    playerShotArray = objectCollection.getArray('playerShot');
+var playerShotArray = objectCollection.getArray('playerShot');
 
 // Entity factories
 
@@ -22,14 +21,7 @@ var player = playerFactory({
     y : 100
 });
 
-var shot = playerShotFactory({
-    x : 200,
-    y : 300,
-    directionIntent : { x : 0, y : -1 }
-});
-
 objectCollection.add('player', player);
-objectCollection.add('playerShot', shot);
 
 loop.update = function(dt) {
     // Update the inputs
@@ -37,19 +29,25 @@ loop.update = function(dt) {
 
     // Entities
     player.update(dt);
-    shot.update(dt);
+    playerShotArray.forEach(function(shot) {
+        shot.update(dt);
+    });
 };
 
 loop.postUpdate = function(dt) {
     // Entities
     player.postUpdate(dt);
-    shot.postUpdate(dt);
+    playerShotArray.forEach(function(shot) {
+        shot.postUpdate(dt);
+    });
 };
 
 loop.render = function(dt) {
     // Entities
     player.render(dt);
-    shot.render(dt);
+    playerShotArray.forEach(function(shot) {
+        shot.render(dt);
+    });
 
     // Refresh the whole scene
     renderer.render(dt);
