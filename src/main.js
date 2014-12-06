@@ -1,3 +1,9 @@
-console.log(2)
+var Loop = require('./lib/gameloop');
 
-module.exports = 3;
+var loop = new Loop();
+
+loop.update = function(dt) {
+    console.log(dt);
+};
+
+//loop.start();
