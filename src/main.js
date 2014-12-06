@@ -16,12 +16,15 @@ var playerShotArray = objectCollection.getArray('playerShot'),
 
 var playerFactory = require('./game/entities/player'),
     enemyFactory = require('./game/entities/enemy'),
-    scoreFactory = require('./game/entities/scoreIndicator');
+    scoreFactory = require('./game/entities/scoreIndicator'),
+    enemyIndicatorFactory = require('./game/entities/enemyIndicator');
 
 var score = 0;
 var scoreElement = new scoreFactory();
+var enemyIndicator = new enemyIndicatorFactory();
 
 renderer.addElement(scoreElement.sprite);
+renderer.addElement(enemyIndicator.sprite);
 
 var player = playerFactory({
     x : 100,
@@ -95,12 +98,15 @@ loop.postUpdate = function(dt) {
         }
     });
 
+    enemyIndicator.postUpdate(dt);
+
     scoreElement.setScore(score);
 };
 
 loop.render = function(dt) {
     // Entities
     scoreElement.render(dt);
+    enemyIndicator.render(dt);
     player.render(dt);
     enemy.render(dt);
 
