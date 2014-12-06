@@ -15,7 +15,15 @@ var playerShotArray = objectCollection.getArray('playerShot'),
 // Entity factories
 
 var playerFactory = require('./game/entities/player'),
-    enemyFactory =require('./game/entities/enemy');
+    enemyFactory = require('./game/entities/enemy');
+
+//TODO constrain the player inside the screen
+//TODO collision playerShot > enemy
+//TODO collision enemyShot > player
+//TODO dead state on player and enemy shots
+//TODO remove dead shots from collection
+
+var score = 0;
 
 var player = playerFactory({
     x : 100,
@@ -58,6 +66,37 @@ loop.postUpdate = function(dt) {
 
     enemyShotArray.forEach(function(shot) {
         shot.postUpdate(dt);
+    });
+
+    //check collision enemyShot > player
+
+    enemyShotArray.forEach(function(shot) {
+        var sizeEnemyShot = 32,
+            sizePlayerHitbox = 16;
+
+        var diffX = Math.abs(player.x - shot.x);
+        var diffY = Math.abs(player.y - shot.y);
+
+        if(diffY < sizePlayerHitbox && diffX < sizePlayerHitbox) {
+            objectCollection.remove('enemyShot', shot);
+        }
+    });
+
+    //check collision playerShot > enemy
+
+    playerShotArray.forEach(function(shot) {
+        var sizeEnemyShot = 32,
+            sizeEnemyHitbox = 32;
+
+        var diffX = Math.abs(enemy.x - shot.x);
+        var diffY = Math.abs(enemy.y - shot.y);
+
+        if(diffY < sizeEnemyHitbox && diffX < sizeEnemyHitbox) {
+            objectCollection.remove('playerShot', shot);
+            score+= 100;
+
+            console.log(score);
+        }
     });
 };
 

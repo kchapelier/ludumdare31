@@ -16,6 +16,9 @@ module.exports = {
     addElement : function(element) {
         stage.addChild(element);
     },
+    removeElement : function(element) {
+        stage.removeChild(element);
+    },
     render : function() {
         renderer.render(stage);
     }

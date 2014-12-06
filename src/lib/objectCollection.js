@@ -25,10 +25,16 @@ Collection.prototype.add = function(type, object) {
 };
 
 Collection.prototype.remove = function(type, object) {
-    // to implement
+    if(!!dictionary[type]) {
+        var pos = dictionary[type].indexOf(object);
 
-    this.emit('remove', object);
-    this.emit('remove.' + type, object);
+        if(pos > -1) {
+            dictionary[type].splice(pos, 1);
+            this.emit('remove', object);
+            this.emit('remove.' + type, object);
+        }
+    }
+
 };
 
 Collection.prototype.getArray = function(type) {

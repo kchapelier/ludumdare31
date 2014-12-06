@@ -18,4 +18,12 @@ collection.on('add.enemyShot', function(element) {
     renderer.addElement(element.sprite);
 });
 
+collection.on('remove.playerShot', function(element) {
+    renderer.removeElement(element.sprite);
+});
+
+collection.on('remove.enemyShot', function(element) {
+    renderer.removeElement(element.sprite);
+});
+
 module.exports = collection;
