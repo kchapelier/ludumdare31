@@ -1,0 +1,28 @@
+{
+  "name": "ludumdare31",
+  "version": "1.0.0",
+  "description": "Ludum Dare 31 entry",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify src/main.js --s main > build/main.js",
+    "watch": "watchify src/main.js --s main -o build/main.js -v"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kchapelier/ludumdare31.git"
+  },
+  "author": "Kevin Chapelier <kevin.chapelier@gmail.com> (http://www.kchapelier.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kchapelier/ludumdare31/issues"
+  },
+  "homepage": "https://github.com/kchapelier/ludumdare31",
+  "dependencies": {
+    "keyboardjs": "^0.4.2",
+    "pixi.js": "^2.1.1",
+    "raf": "^2.0.4",
+    "victor": "^0.2.6"
+  }
+}
