@@ -8,7 +8,7 @@ module.exports = {
         element.sprite = new PIXI.Sprite(texture);
     },
     render : function(element) {
-        element.sprite.x = Math.round(element.x);
-        element.sprite.y = Math.round(element.y);
+        element.sprite.x = element.x;
+        element.sprite.y = element.y;
     }
 };

@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/kchapelier/ludumdare31.git"
   },
-  "author": "Kevin Chapelier <kevin.chapelier@gmail.com> (http://www.kchapelier.com/)",
+  "author": "Kevin Chapelier",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kchapelier/ludumdare31/issues"
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/kchapelier/ludumdare31",
   "dependencies": {
     "keyboardjs": "^0.4.2",
+    "numeral": "^1.5.3",
     "pixi.js": "^2.1.1",
     "raf": "^2.0.4",
     "victor": "^0.2.6"
