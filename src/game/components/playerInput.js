@@ -2,8 +2,8 @@ var input = require('../input');
 
 module.exports = {
     focused : false,
-    normalSpeed : 270,
-    focusedSpeed : 150,
+    normalSpeed : 290,
+    focusedSpeed : 170,
     lastShot : 0,
     shotFrequency : 66,
     shooting : false,

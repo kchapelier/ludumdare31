@@ -28,6 +28,8 @@ RandomLoopSequence.prototype.update = function(pattern, dt) {
             } while (this.previousSequence === this.currentSequence && this.sequences.length > 1);
         }
 
+        //console.log(this.previousSequence, this.currentSequence);
+
         if (this.waiting) {
             this.accumulatedTime += dt;
 
@@ -63,6 +65,7 @@ RandomLoopSequence.prototype.reset = function() {
     this.accumulatedTime = 0;
     this.waiting = false;
     this.currentRepeatition = 0;
+    this.previousSequence = null;
 };
 
 module.exports = RandomLoopSequence;
