@@ -5,6 +5,8 @@ ludumdare31
 
 ### 2nd day :
 
+ * 12h30 : Finished the background and its shader, now working on other graphical assets.
+ * 10h30 : Completely re evaluated the mood of the game to comply with the compo rules relative to assets.
  * 2h20 : Pattern sequence logic.
 
 ### 1st day :
