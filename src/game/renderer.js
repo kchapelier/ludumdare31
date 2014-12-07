@@ -1,15 +1,17 @@
 "use strict";
 
-var PIXI = require('pixi.js'),
-    width = 800, //window.innerWidth,
-    height = 600; //window.innerHeight;
+// TODO for future versions : fullscreen support
 
-var renderer = PIXI.autoDetectRenderer(width, height),
+var PIXI = require('pixi.js'),
+    baseWidth = 800, //window.innerWidth,
+    baseHeight = 600; //window.innerHeight;
+
+var renderer = PIXI.autoDetectRenderer(baseWidth, baseHeight),
     stage = new PIXI.Stage(0xFFFFFF);
 
 module.exports = {
-    screenWidth : width,
-    screenHeight : height,
+    screenWidth : baseWidth,
+    screenHeight : baseHeight,
     infectDom : function(domElement) {
         if(typeof domElement === 'string') {
             domElement = document.getElementById(domElement);
@@ -26,4 +28,15 @@ module.exports = {
     render : function() {
         renderer.render(stage);
     }
+    /*,
+    setFullScreen : function() {
+        this.screenWidth = window.innerWidth;
+        this.screenHeight = window.innerHeight;
+        renderer.resize(this.screenWidth, window.innerHeight);
+    },
+    setNormalScreen : function() {
+        this.screenWidth = baseWidth;
+        this.screenHeight = baseHeight;
+        renderer.resize(this.screenWidth, window.innerHeight);
+    }*/
 };

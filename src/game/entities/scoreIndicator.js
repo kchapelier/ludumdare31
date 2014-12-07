@@ -6,13 +6,13 @@ var GameObject = require('../../lib/quick-and-dirty-gameobject'),
 
 module.exports = GameObject.createFactory(
     {
-        x : 0,
-        y : 0,
+        x : 10,
+        y : 10,
         score : 0,
         initialize : function (element) {
             element.numeralScore = numeral(element.score);
             element.numeralScore.format('0,0');
-            element.sprite = new PIXI.Text(element.score, { fill : "#DDDDDD" });
+            element.sprite = new PIXI.Text(element.score, { fill : "#FFFFFF", stroke : "#777777", strokeThickness : 4 });
         },
         render : function(element) {
             element.sprite.x = element.x;
