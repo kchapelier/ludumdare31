@@ -5,6 +5,7 @@ ludumdare31
 
 ### 2nd day :
 
+ * 21h40 : Panic, still have to do the homescreen, find a name, make the enemy and player sprites, string all the patterns together and if time permits make the music.
  * 12h30 : Finished the background and its shader, now working on other graphical assets.
  * 10h30 : Completely re evaluated the mood of the game to comply with the compo rules relative to assets.
  * 2h20 : Pattern sequence logic.
