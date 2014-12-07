@@ -81,10 +81,16 @@ Pattern.prototype.setAngle = function(angle, fromPlayer) {
         this.aimDirection = this.playerDirection.clone();
         this.aimDirection.rotate(angle);
     } else {
+        this.aimDirection.x = 1;
+        this.aimDirection.y = 0;
         this.aimDirection.rotate(angle);
     }
 
     return this;
+};
+
+Pattern.prototype.randomAngle = function() {
+    this.aimDirection.rotate(Math.random() * Math.PI * 2)
 };
 
 Pattern.prototype.singleShot = function(angleDeviation, fromPlayer) {

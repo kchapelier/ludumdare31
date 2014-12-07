@@ -32,7 +32,51 @@ module.exports = {
         ], 0);
         */
 
+        /*
+        element.sequence = new ParallelSequence([
+            new Sequence([
+                ['bulletSpeed', 130],
+                ['wait', 5000]
+            ]),
+            new Sequence([
+                ['increaseBulletSpeed', 6],
+                ['randomBulletSprite', 'small-enemy-bullet-negative', 'small-enemy-bullet-yellow', 'small-enemy-bullet-blue', 'small-enemy-bullet-red'],
+                ['randomShot', 1, Math.PI / 7, 0, true],
+                ['wait', 20]
+            ])
+        ]);
+        */
 
+        element.sequence = new ParallelSequence([
+            new Sequence([
+                ['wait', 75],
+                ['bulletSprite', 'small-enemy-bullet-yellow'],
+                ['bulletSpeed', 300],
+                ['randomAngle'],
+                ['burst', 10, Math.PI / 4, 0, false],
+                ['burst', 10, Math.PI / 4, Math.PI / 2, false],
+                ['burst', 10, Math.PI / 4, Math.PI / 2 * 2, false],
+                ['burst', 10, Math.PI / 4, Math.PI / 2 * 3, false],
+                ['wait', 75],
+                ['bulletSprite', 'small-enemy-bullet-red'],
+                ['bulletSpeed', 300],
+                ['randomAngle'],
+                ['burst', 10, Math.PI / 4, 0, false],
+                ['burst', 10, Math.PI / 4, Math.PI / 2, false],
+                ['burst', 10, Math.PI / 4, Math.PI / 2 * 2, false],
+                ['burst', 10, Math.PI / 4, Math.PI / 2 * 3, false],
+                ['wait', 75],
+                ['bulletSprite', 'small-enemy-bullet-blue'],
+                ['bulletSpeed', 300],
+                ['randomAngle'],
+                ['burst', 10, Math.PI / 4, 0, false],
+                ['burst', 10, Math.PI / 4, Math.PI / 2, false],
+                ['burst', 10, Math.PI / 4, Math.PI / 2 * 2, false],
+                ['burst', 10, Math.PI / 4, Math.PI / 2 * 3, false],
+            ])
+        ]);
+
+        /*
         element.sequence = new Sequence([
             ['randomBulletSprite', 'small-enemy-bullet-yellow', 'small-enemy-bullet-red', 'small-enemy-bullet-blue'],
             ['bulletSpeed', 100],
@@ -51,6 +95,7 @@ module.exports = {
             ['wait', 150],
             ['rotate', 0.3]
         ], 0);
+        */
 
         /*
         element.sequence = new ParallelSequence([
