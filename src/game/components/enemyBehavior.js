@@ -4,7 +4,8 @@ var Pattern = require('../patterns/pattern'),
     collection = require('../objectCollection'),
     renderer = require('../renderer'),
     Victor = require('victor'),
-    Sequence = require('../patterns/sequence');
+    Sequence = require('../patterns/sequence'),
+    ParallelSequence = require('../patterns/parallelSequence');
 
 var player = null;
 
@@ -31,6 +32,7 @@ module.exports = {
         ], 0);
         */
 
+        /*
         element.sequence = new Sequence([
             ['burst', 12, Math.PI * 2, 0, false],
             ['randomShot', 3, Math.PI / 2, 0, false],
@@ -43,6 +45,29 @@ module.exports = {
             ['wait', 150],
             ['rotate', 0.3]
         ], 0);
+        */
+
+        element.sequence = new ParallelSequence([
+            new Sequence([
+                ['burst', 2, 0.5, 0, false],
+                ['wait', 150]
+            ]),
+            new Sequence([
+                ['burst', 2, 0.5, Math.PI, false],
+                ['wait', 200]
+            ]),
+            new Sequence([
+                ['randomShot', 15, Math.PI - 0.5, Math.PI / 2, false],
+                ['randomShot', 15, Math.PI - 0.5, -Math.PI / 2, false],
+                ['wait', 40]
+            ]),
+            new Sequence([
+                ['randomShot', 3, Math.PI * 2, 0, false],
+                ['wait', 40],
+                ['rotate', 0.01]
+            ])
+        ]);
+
     },
     update : function(element, dt) {
         if(player === null) {
