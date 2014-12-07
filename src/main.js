@@ -1,7 +1,20 @@
 var Loop = require('./lib/gameloop'),
     input = require('./game/input'),
     renderer = require('./game/renderer'),
-    objectCollection = require('./game/objectCollection');
+    objectCollection = require('./game/objectCollection'),
+    textureCollection = require('./game/textureCollection');
+
+textureCollection.load('enemy-indicator', 'enemy-indicator.png');
+textureCollection.load('medium-enemy-bullet-yellow', 'medium-enemy-bullet-yellow.png');
+textureCollection.load('small-enemy-bullet-yellow', 'small-enemy-bullet-yellow.png');
+textureCollection.load('small-enemy-bullet-red', 'small-enemy-bullet-red.png');
+textureCollection.load('small-enemy-bullet-blue', 'small-enemy-bullet-blue.png');
+textureCollection.load('small-enemy-bullet-negative', 'small-enemy-bullet-negative.png');
+
+textureCollection.load('player-sprite', 'placeholder.png');
+textureCollection.load('enemy-sprite', 'placeholder.png');
+textureCollection.load('hitbox', 'hitbox.png');
+textureCollection.load('player-bullet', 'player-bullet.png');
 
 renderer.infectDom('game');
 

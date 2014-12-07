@@ -1,7 +1,9 @@
 "use strict";
 
-var PIXI = require('pixi.js');
-var texture = PIXI.Texture.fromImage('./assets/images/placeholder.png', false);
+var PIXI = require('pixi.js'),
+    textureCollection = require('./../textureCollection');
+
+var texture = textureCollection.get('enemy-sprite');
 
 module.exports = {
     initialize : function(element) {

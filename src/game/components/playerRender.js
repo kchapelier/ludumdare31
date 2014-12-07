@@ -1,6 +1,8 @@
-var PIXI = require('pixi.js');
-var texture = PIXI.Texture.fromImage('./assets/images/placeholder.png', false);
-var textureHitbox = PIXI.Texture.fromImage('./assets/images/hitbox.png', false);
+var PIXI = require('pixi.js'),
+    textureCollection = require('./../textureCollection');
+
+var texture = textureCollection.get('player-sprite');
+var textureHitbox = textureCollection.get('hitbox');
 
 module.exports = {
     initialize : function(element) {

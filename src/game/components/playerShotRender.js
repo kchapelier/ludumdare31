@@ -1,7 +1,9 @@
 "use strict";
 
-var PIXI = require('pixi.js');
-var texture = PIXI.Texture.fromImage('./assets/images/player-bullet.png', false);
+var PIXI = require('pixi.js'),
+    textureCollection = require('./../textureCollection')
+
+var texture = textureCollection.get('player-bullet');
 
 module.exports = {
     initialize : function(element) {

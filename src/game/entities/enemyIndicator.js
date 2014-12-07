@@ -3,11 +3,12 @@
 var GameObject = require('../../lib/quick-and-dirty-gameobject'),
     collection = require('../objectCollection.js'),
     renderer = require('../renderer.js'),
-    PIXI = require('pixi.js');
+    PIXI = require('pixi.js'),
+    textureCollection = require('./../textureCollection');
 
 var enemy = null;
 
-var texture = PIXI.Texture.fromImage('./assets/images/enemy-indicator.png', false);
+var texture = textureCollection.get('enemy-indicator');
 
 module.exports = GameObject.createFactory(
     {
