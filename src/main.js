@@ -47,8 +47,8 @@ loop.update = function(dt) {
     input.update(dt);
 
     // Entities
-    //player.update(dt);
-    //enemy.update(dt);
+    player.update(dt);
+    enemy.update(dt);
 
     playerShotArray.forEach(function(shot) {
         shot.update(dt);
@@ -61,8 +61,10 @@ loop.update = function(dt) {
 
 loop.postUpdate = function(dt) {
     // Entities
-    //player.postUpdate(dt);
-    //enemy.postUpdate(dt);
+    player.postUpdate(dt);
+    enemy.postUpdate(dt);
+
+    background.postUpdate(dt);
 
     playerShotArray.forEach(function(shot) {
         shot.postUpdate(dt);
