@@ -7,16 +7,15 @@ var GameObject = require('../../lib/quick-and-dirty-gameobject'),
 
 var enemy = null;
 
+var texture = PIXI.Texture.fromImage('./assets/images/enemy-indicator.png', false);
+
 module.exports = GameObject.createFactory(
     {
         x : 0,
         y : 0,
         sprite : null,
-        width : null,
         initialize : function (element) {
-            element.sprite = new PIXI.Text('enemy', { fill : "#000000" });
-            element.width = element.sprite.width;
-            element.height = element.sprite.height;
+            element.sprite = new PIXI.Sprite(texture);
         },
         postUpdate : function (element) {
             if(enemy === null) {
@@ -24,8 +23,8 @@ module.exports = GameObject.createFactory(
             }
         },
         render : function(element) {
-            element.sprite.x = (enemy ? enemy.x + enemy.sprite.width / 2 : renderer.screenWidth / 2) - element.width / 2;
-            element.sprite.y = renderer.screenHeight - element.height;
+            element.sprite.x = (enemy ? enemy.x + enemy.sprite.width / 2 : renderer.screenWidth / 2) - element.sprite.width / 2;
+            element.sprite.y = renderer.screenHeight - element.sprite.height;
         }
     }
 );

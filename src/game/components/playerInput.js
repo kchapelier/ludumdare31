@@ -5,7 +5,7 @@ module.exports = {
     normalSpeed : 270,
     focusedSpeed : 150,
     lastShot : 0,
-    shotFrequency : 133,
+    shotFrequency : 66,
     shooting : false,
     update : function(element, dt) {
         var directionIntent = element.directionIntent;
