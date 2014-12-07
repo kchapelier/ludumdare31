@@ -5,6 +5,16 @@ var Loop = require('./lib/gameloop'),
     objectCollection = require('./game/objectCollection'),
     textureCollection = require('./game/textureCollection');
 
+//FIXME Terribly optimistic assets loading
+
+sound.load('intro', 'ld31-intro');
+sound.load('hit1', 'ld31-hit1', 1);
+sound.load('hit2', 'ld31-hit2', 1);
+sound.load('dissonant1', 'ld31-dissonant1');
+sound.load('dissonant2', 'ld31-dissonant2');
+sound.load('dissonant3', 'ld31-dissonant3');
+sound.load('dissonant4', 'ld31-dissonant4');
+
 textureCollection.load('enemy-indicator', 'enemy-indicator.png');
 textureCollection.load('medium-enemy-bullet-yellow', 'medium-enemy-bullet-yellow.png');
 textureCollection.load('small-enemy-bullet-yellow', 'small-enemy-bullet-yellow.png');
@@ -18,6 +28,9 @@ textureCollection.load('hitbox', 'hitbox.png');
 textureCollection.load('player-bullet', 'player-bullet.png');
 
 renderer.infectDom('game');
+sound.play('intro', {
+    loop : true
+});
 
 var loop = new Loop();
 
@@ -99,6 +112,8 @@ loop.postUpdate = function(dt) {
 
         if(diffY < sizePlayerHitbox && diffX < sizePlayerHitbox) {
             objectCollection.remove('enemyShot', shot);
+
+            sound.play('dissonant3');
         }
     });
 
@@ -113,6 +128,7 @@ loop.postUpdate = function(dt) {
 
         if(diffY < sizeEnemyHitbox && diffX < sizeEnemyHitbox) {
             objectCollection.remove('playerShot', shot);
+            sound.play('hit2');
             score+= 100;
         }
     });
