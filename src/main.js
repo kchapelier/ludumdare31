@@ -109,12 +109,15 @@ var start = function() {
 
         //check collision enemyShot > player
 
-        enemyShotArray.forEach(function(shot) {
-            var sizeEnemyShot = 32,
-                sizePlayerHitbox = 16;
+        var sizePlayerHitbox = player.hitbox.width,
+            playerHitboxX = player.hitbox.x,
+            playerHitboxY = player.hitbox.y;
 
-            var diffX = Math.abs(player.x - shot.x);
-            var diffY = Math.abs(player.y - shot.y);
+        enemyShotArray.forEach(function(shot) {
+            var sizeEnemyShot = shot.sprite.width / 4;
+
+            var diffX = Math.abs(playerHitboxX - shot.x - sizeEnemyShot);
+            var diffY = Math.abs(playerHitboxY - shot.y - sizeEnemyShot);
 
             if(diffY < sizePlayerHitbox && diffX < sizePlayerHitbox) {
                 objectCollection.remove('enemyShot', shot);
