@@ -15,10 +15,18 @@ module.exports = {
     initialize : function (element) {
         element.pattern = new Pattern(element, { x: 0, y: 0});
         element.sequence = new Sequence([
-            ['singleShot', 0, false],
+            ['burst', 5, 0.3, 0, false],
+            ['burst', 5, 0.3, Math.PI, false],
+            ['burst', 5, 0.3, Math.PI / 2, false],
+            ['burst', 5, 0.3, Math.PI * 3 / 2, false],
             ['wait', 100],
-            ['singleShot', 0, true],
-            ['wait', 50],
+            ['rotate', Math.PI / 4],
+            ['burst', 5, 0.3, 0, false],
+            ['burst', 5, 0.3, Math.PI, false],
+            ['burst', 5, 0.3, Math.PI / 2, false],
+            ['burst', 5, 0.3, Math.PI * 3 / 2, false],
+            ['rotate', 0.45 - Math.PI / 2],
+            ['wait', 100]
         ], 0);
     },
     update : function(element, dt) {
