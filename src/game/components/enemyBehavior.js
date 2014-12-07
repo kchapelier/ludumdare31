@@ -5,7 +5,8 @@ var Pattern = require('../patterns/pattern'),
     renderer = require('../renderer'),
     Victor = require('victor'),
     Sequence = require('../patterns/sequence'),
-    ParallelSequence = require('../patterns/parallelSequence');
+    ParallelSequence = require('../patterns/parallelSequence'),
+    RandomLoopSequence = require('../patterns/randomLoopSequence');
 
 var player = null;
 
@@ -15,6 +16,20 @@ module.exports = {
     moveCounter : 0,
     initialize : function (element) {
         element.pattern = new Pattern(element, { x: 0, y: 0});
+
+        element.sequence = new RandomLoopSequence([
+            new Sequence([
+                ['wait', 100],
+                ['bulletSprite', 'small-enemy-bullet-yellow'],
+                ['burst', 5, 0.3, 0, false]
+            ], 3),
+            new Sequence([
+                ['wait', 100],
+                ['bulletSprite', 'medium-enemy-bullet-yellow'],
+                ['burst', 5, 0.3, Math.PI, false]
+            ], 3)
+        ], 500);
+
         /*
         element.sequence = new Sequence([
             ['burst', 5, 0.3, 0, false],
@@ -47,6 +62,7 @@ module.exports = {
         ]);
         */
 
+        /*
         element.sequence = new ParallelSequence([
             new Sequence([
                 ['wait', 75],
@@ -75,6 +91,7 @@ module.exports = {
                 ['burst', 10, Math.PI / 4, Math.PI / 2 * 3, false],
             ])
         ]);
+        */
 
         /*
         element.sequence = new Sequence([
