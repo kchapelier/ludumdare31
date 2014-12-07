@@ -1,6 +1,7 @@
 var Loop = require('./lib/gameloop'),
     input = require('./game/input'),
     renderer = require('./game/renderer'),
+    sound = require('./game/sound'),
     objectCollection = require('./game/objectCollection'),
     textureCollection = require('./game/textureCollection');
 

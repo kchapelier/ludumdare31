@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/kchapelier/ludumdare31",
   "dependencies": {
+    "howler": "^1.1.25",
     "keyboardjs": "^0.4.2",
     "numeral": "^1.5.3",
     "pixi.js": "^2.1.1",
