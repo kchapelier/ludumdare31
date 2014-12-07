@@ -2,8 +2,13 @@ var Loop = require('./lib/gameloop'),
     input = require('./game/input'),
     renderer = require('./game/renderer'),
     sound = require('./game/sound'),
+    highScores = require('./game/highscores'),
     objectCollection = require('./game/objectCollection'),
     textureCollection = require('./game/textureCollection');
+
+highScores.get(function(scores) {
+    console.log(scores);
+});
 
 //FIXME Terribly optimistic assets loading
 
@@ -114,6 +119,9 @@ loop.postUpdate = function(dt) {
             objectCollection.remove('enemyShot', shot);
 
             sound.play('dissonant3');
+            highScores.set('normal', score, function(scores) {
+                //console.log(scores);
+            });
         }
     });
 
