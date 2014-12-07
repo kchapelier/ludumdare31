@@ -18,16 +18,23 @@ module.exports = {
         element.pattern = new Pattern(element, { x: 0, y: 0});
 
         element.sequence = new RandomLoopSequence([
+            new RandomLoopSequence([
+                new Sequence([
+                    ['wait', 100],
+                    ['bulletSprite', 'small-enemy-bullet-yellow'],
+                    ['burst', 5, 0.3, 0, false]
+                ], 3),
+                new Sequence([
+                    ['wait', 100],
+                    ['bulletSprite', 'medium-enemy-bullet-yellow'],
+                    ['burst', 5, 0.3, Math.PI, false]
+                ], 3)
+            ], 500, 4),
             new Sequence([
-                ['wait', 100],
-                ['bulletSprite', 'small-enemy-bullet-yellow'],
+                ['wait', 50],
+                ['bulletSprite', 'small-enemy-bullet-blue'],
                 ['burst', 5, 0.3, 0, false]
-            ], 3),
-            new Sequence([
-                ['wait', 100],
-                ['bulletSprite', 'medium-enemy-bullet-yellow'],
-                ['burst', 5, 0.3, Math.PI, false]
-            ], 3)
+            ], 12),
         ], 500);
 
         /*
