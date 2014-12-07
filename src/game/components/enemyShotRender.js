@@ -7,7 +7,13 @@ var texture = textureCollection.get('small-enemy-bullet-yellow');
 
 module.exports = {
     initialize : function(element) {
-        element.sprite = new PIXI.Sprite(texture);
+        var bulletTexture;
+
+        if(!!element.texture) {
+            bulletTexture = textureCollection.get(element.texture);
+        }
+
+        element.sprite = new PIXI.Sprite(bulletTexture ? bulletTexture : texture);
     },
     render : function(element) {
         element.sprite.x = Math.round(element.x);

@@ -4,10 +4,11 @@ var Victor = require('victor'),
     collection = require('../objectCollection'),
     shotFactory = require('../entities/enemyShot');
 
-var shot = function(position, speed, direction) {
+var shot = function(position, speed, sprite, direction) {
     collection.add('enemyShot', shotFactory({
         x : position.x,
         y : position.y,
+        texture : sprite,
         speed : speed,
         directionIntent : direction
     }));
@@ -18,12 +19,18 @@ var Pattern = function(source, destination) {
     this.destination = destination;
     this.aimDirection = new Victor(0, 1);
     this.playerDirection = new Victor(1, 0);
+
+    this.bullet = {
+        sprite : 'medium-enemy-bullet-yellow',
+        speed : 200
+    };
 };
 
 Pattern.prototype.source = null;
 Pattern.prototype.destination = null;
 Pattern.prototype.aimDirection = null;
 Pattern.prototype.playerDirection = null;
+Pattern.prototype.bullet = null;
 
 Pattern.prototype.setSource = function(source) {
     this.source = source;
@@ -52,6 +59,23 @@ Pattern.prototype.rotate = function(angle) {
     return this;
 };
 
+Pattern.prototype.bulletSpeed = function(speed) {
+    this.bullet.speed = speed;
+};
+
+Pattern.prototype.increaseBulletSpeed = function(increase) {
+    this.bullet.speed+= increase;
+};
+
+Pattern.prototype.bulletSprite = function(sprite) {
+    this.bullet.sprite = sprite;
+};
+
+Pattern.prototype.randomBulletSprite = function(sprites) {
+    var i = Math.floor(Math.random() * arguments.length);
+    this.bullet.sprite = arguments[i];
+};
+
 Pattern.prototype.setAngle = function(angle, fromPlayer) {
     if(fromPlayer) {
         this.aimDirection = this.playerDirection.clone();
@@ -68,7 +92,7 @@ Pattern.prototype.singleShot = function(angleDeviation, fromPlayer) {
 
     v.rotate(angleDeviation);
 
-    shot(this.source, 200, v);
+    shot(this.source, this.bullet.speed, this.bullet.sprite, v);
 
     return this;
 };
@@ -81,7 +105,7 @@ Pattern.prototype.randomShot = function(number, angleSpread, angleDeviation, fro
     for(var i = 0; i < number; i++) {
         var vc = v.clone();
         vc.rotate(angleSpread * Math.random());
-        shot(this.source, 200, vc);
+        shot(this.source, this.bullet.speed, this.bullet.sprite, vc);
     }
 };
 
@@ -91,7 +115,7 @@ Pattern.prototype.burst = function(number, angleSpread, angleDeviation, fromPlay
     v.rotate(angleDeviation - angleSpread / 2);
 
     for(var i = 0; i < number; i++) {
-        shot(this.source, 200, v.clone());
+        shot(this.source, this.bullet.speed, this.bullet.sprite, v.clone());
         v.rotate(angleSpread / (number - 1));
     }
 

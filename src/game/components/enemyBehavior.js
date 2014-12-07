@@ -34,14 +34,20 @@ module.exports = {
 
 
         element.sequence = new Sequence([
+            ['randomBulletSprite', 'small-enemy-bullet-yellow', 'small-enemy-bullet-red', 'small-enemy-bullet-blue'],
+            ['bulletSpeed', 100],
             ['burst', 12, Math.PI * 2, 0, false],
             ['randomShot', 3, Math.PI / 2, 0, false],
             ['wait', 50],
+            ['increaseBulletSpeed', 8],
             ['burst', 12, Math.PI * 2, -0.06, false],
             ['randomShot', 4, Math.PI / 2, 0, false],
             ['wait', 50],
+            ['increaseBulletSpeed', 8],
             ['burst', 12, Math.PI * 2, -0.12, false],
-            ['randomShot', 3, Math.PI / 2, 0, false],
+            ['increaseBulletSpeed', 120],
+            ['bulletSprite', 'medium-enemy-bullet-yellow'],
+            ['randomShot', 12, Math.PI * 2, 0, false],
             ['wait', 150],
             ['rotate', 0.3]
         ], 0);
