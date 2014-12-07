@@ -12,8 +12,8 @@ module.exports = {
     render : function(element) {
         element.sprite.x = Math.round(element.x);
         element.sprite.y = Math.round(element.y);
-        element.hitbox.x = Math.round(element.x + 8);
-        element.hitbox.y = Math.round(element.y + 8);
+        element.hitbox.x = Math.round(element.x + 11);
+        element.hitbox.y = Math.round(element.y + 11);
 
         if(element.focused) {
             element.hitbox.visible = true;
