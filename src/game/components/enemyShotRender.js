@@ -1,7 +1,7 @@
 "use strict";
 
 var PIXI = require('pixi.js');
-var texture = PIXI.Texture.fromImage('./assets/images/placeholder.png', false);
+var texture = PIXI.Texture.fromImage('./assets/images/medium-enemy-bullet-yellow.png', false);
 
 module.exports = {
     initialize : function(element) {
