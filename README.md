@@ -3,6 +3,12 @@ ludumdare31
 
 ## Log (CET)
 
+### 2nd day :
+
+ * 2h20 : Pattern sequence logic.
+
+### 1st day :
+
  * 23h00 : Most of the core elements of gameplay are implemented.
  * 13h45 : Settled on the mood of the game and a few basic chord progressions for the music.
  * 12h45 : Finally decided to play it relatively safe and settled for an STG.

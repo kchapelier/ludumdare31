@@ -10,10 +10,11 @@ var player = null;
 
 module.exports = {
     nextPosition : null,
-    moveDuration : 3000,
+    moveDuration : 6000,
     moveCounter : 0,
     initialize : function (element) {
         element.pattern = new Pattern(element, { x: 0, y: 0});
+        /*
         element.sequence = new Sequence([
             ['burst', 5, 0.3, 0, false],
             ['burst', 5, 0.3, Math.PI, false],
@@ -27,6 +28,20 @@ module.exports = {
             ['burst', 5, 0.3, Math.PI * 3 / 2, false],
             ['rotate', 0.45 - Math.PI / 2],
             ['wait', 100]
+        ], 0);
+        */
+
+        element.sequence = new Sequence([
+            ['burst', 12, Math.PI * 2, 0, false],
+            ['randomShot', 3, Math.PI / 2, 0, false],
+            ['wait', 50],
+            ['burst', 12, Math.PI * 2, -0.06, false],
+            ['randomShot', 4, Math.PI / 2, 0, false],
+            ['wait', 50],
+            ['burst', 12, Math.PI * 2, -0.12, false],
+            ['randomShot', 3, Math.PI / 2, 0, false],
+            ['wait', 150],
+            ['rotate', 0.3]
         ], 0);
     },
     update : function(element, dt) {
