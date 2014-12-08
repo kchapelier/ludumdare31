@@ -20,7 +20,7 @@ var highScores = {
     },
     set : function(gameType, score, callback) {
         highScores.get(function(scores) {
-            scores[gameType] = score;
+            scores[gameType] = Math.max(score, scores[gameType]);
             localForage.setItem('scores', scores);
             callback(scores);
         });

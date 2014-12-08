@@ -34,7 +34,18 @@ Collection.prototype.remove = function(type, object) {
             this.emit('remove.' + type, object);
         }
     }
+};
 
+Collection.prototype.removeAll = function(type) {
+    var array = this.getArray(type),
+        self = this;
+
+    array.forEach(function(element) {
+        self.emit('remove', element);
+        self.emit('remove.' + type, element);
+    });
+
+    array.splice(0, array.length); //empty the array
 };
 
 Collection.prototype.getArray = function(type) {

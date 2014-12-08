@@ -24,6 +24,7 @@
     "keyboardjs": "^0.4.2",
     "localforage": "^1.1.1",
     "numeral": "^1.5.3",
+    "perlin": "^1.0.0",
     "pixi.js": "^2.1.1",
     "raf": "^2.0.4",
     "victor": "^0.2.6"
