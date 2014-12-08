@@ -106,19 +106,22 @@ module.exports = {
             new RandomLoopSequence([
                 new Sequence([
                     ['bulletSprite', 'small-enemy-bullet-blue'],
-                    ['bulletSpeed', 100],
-                    ['burst', 11, Math.PI * 2, 0, false],
+                    ['bulletSpeed', 110],
+                    ['burst', 12, Math.PI * 2, 0, false],
                     ['wait', 50],
-                    ['increaseBulletSpeed', 8],
-                    ['burst', 11, Math.PI * 2, -0.06, false],
+                    ['increaseBulletSpeed', 5],
+                    ['burst', 12, Math.PI * 2, -0.055, false],
                     ['wait', 50],
-                    ['increaseBulletSpeed', 8],
-                    ['burst', 11, Math.PI * 2, -0.12, false],
-                    ['increaseBulletSpeed', 80],
+                    ['increaseBulletSpeed', 6],
+                    ['burst', 12, Math.PI * 2, -0.11, false],
+                    ['wait', 50],
+                    ['increaseBulletSpeed', 7],
+                    ['burst', 12, Math.PI * 2, -0.165, false],
+                    ['increaseBulletSpeed', 90],
                     ['bulletSprite', 'medium-enemy-bullet-yellow'],
-                    ['randomShot', 9, Math.PI * 2, 0, false],
-                    ['wait', 150],
-                    ['rotate', 0.3]
+                    ['randomShot', 30, Math.PI * 2, 0, false],
+                    ['wait', 140],
+                    ['rotate', 0.37]
                 ], 12),
                 new Sequence([
                     ['bulletSprite', 'small-enemy-bullet-negative'],
@@ -130,7 +133,7 @@ module.exports = {
                     ['wait', 190],
                     ['rotate', 0.3]
                 ], 2)
-            ], 750, 6)
+            ], 900, 6)
 
             /* BUGGED
             new ParallelSequence([
