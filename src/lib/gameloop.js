@@ -1,3 +1,5 @@
+"use strict";
+
 var raf = require('raf'),
     requestAnimationFrame = raf,
     cancelAnimationFrame = raf.cancel;

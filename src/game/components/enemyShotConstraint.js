@@ -1,5 +1,7 @@
+"use strict";
+
 var renderer = require('../renderer'),
-    objectCollection = require('../objectCollection')
+    objectCollection = require('../objectCollection');
 
 var margin = 200;
 

@@ -20,12 +20,15 @@ var GameObject = {
         };
     },
     create: function (components) {
-        var initFunctions = [];
-        var updateFunctions = [];
-        var postUpdateFunctions = [];
-        var preRenderFunctions = [];
-        var renderFunctions = [];
-        var postRenderFunctions = [];
+        var initFunctions = [],
+            updateFunctions = [],
+            postUpdateFunctions = [],
+            preRenderFunctions = [],
+            renderFunctions = [],
+            postRenderFunctions = [],
+            component,
+            key,
+            i;
 
         var object = {
             update: function (dt) {
@@ -55,10 +58,10 @@ var GameObject = {
             }
         };
 
-        for (var i = 0; i < arguments.length; i++) {
-            var component = arguments[i];
+        for (i = 0; i < arguments.length; i++) {
+            component = arguments[i];
 
-            for (var key in component) {
+            for (key in component) {
                 if (component.hasOwnProperty(key)) {
                     if (key === 'initialize') {
                         initFunctions.push(component[key]);
@@ -79,7 +82,7 @@ var GameObject = {
             }
         }
 
-        for (var i = 0; i < initFunctions.length; i++) {
+        for (i = 0; i < initFunctions.length; i++) {
             initFunctions[i](object);
         }
 

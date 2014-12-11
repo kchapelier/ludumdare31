@@ -90,7 +90,7 @@ Pattern.prototype.setAngle = function (angle, fromPlayer) {
 };
 
 Pattern.prototype.randomAngle = function () {
-    this.aimDirection.rotate(Math.random() * Math.PI * 2)
+    this.aimDirection.rotate(Math.random() * Math.PI * 2);
 };
 
 Pattern.prototype.singleShot = function (angleDeviation, fromPlayer) {

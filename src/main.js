@@ -1,9 +1,11 @@
+"use strict";
+
 var Loop = require('./lib/gameloop'),
     input = require('./game/input'),
     renderer = require('./game/renderer'),
     sound = require('./game/sound'),
     highScores = require('./game/highscores'),
-    perlin = require('perlin'),
+    //perlin = require('perlin'),
     objectCollection = require('./game/objectCollection'),
     textureCollection = require('./game/textureCollection');
 
@@ -200,8 +202,7 @@ var start = function () {
             //check collision playerShot > enemy
 
             playerShotArray.forEach(function (shot) {
-                var sizeEnemyShot = 32,
-                    sizeEnemyHitbox = 32;
+                var sizeEnemyHitbox = 32;
 
                 var diffX = Math.abs(enemy.x - shot.x);
                 var diffY = Math.abs(enemy.y - shot.y);

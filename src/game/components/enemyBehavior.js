@@ -5,7 +5,7 @@ var Pattern = require('../patterns/pattern'),
     renderer = require('../renderer'),
     Victor = require('victor'),
     Sequence = require('../patterns/sequence'),
-    ParallelSequence = require('../patterns/parallelSequence'),
+    //ParallelSequence = require('../patterns/parallelSequence'),
     RandomLoopSequence = require('../patterns/randomLoopSequence');
 
 var player = null;

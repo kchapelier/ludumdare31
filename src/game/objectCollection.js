@@ -1,3 +1,5 @@
+"use strict";
+
 var collection = require('../lib/objectCollection'),
     renderer = require('./renderer');
 

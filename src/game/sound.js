@@ -6,7 +6,7 @@ var dictionary = {};
 
 module.exports = {
     load: function (id, filename, volume) {
-        dictionary[id] = new Howl({
+        dictionary[id] = new howler.Howl({
             urls: ['./assets/sounds/' + filename + '.ogg', './assets/sounds/' + filename + '.wav'],
             autoplay: false,
             loop: false,
@@ -20,7 +20,7 @@ module.exports = {
     },
     play: function (id, options) {
         if (!!dictionary[id]) {
-            dictionary[id].loop(options && !!options.loop)
+            dictionary[id].loop(options && !!options.loop);
             dictionary[id].play();
             return true;
         }

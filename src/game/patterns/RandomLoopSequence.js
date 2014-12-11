@@ -1,8 +1,6 @@
 "use strict";
 
-var Sequence = require('./sequence');
-
-var RandomLoopSequence = function(sequences, delayInBetween, repeatition) {
+var RandomLoopSequence = function (sequences, delayInBetween, repeatition) {
     this.sequences = sequences;
     this.currentSequence = null;
     this.previousSequence = null;
@@ -14,8 +12,8 @@ var RandomLoopSequence = function(sequences, delayInBetween, repeatition) {
     this.currentRepeatition = 0;
 };
 
-RandomLoopSequence.prototype.update = function(pattern, dt) {
-    if(!this.isComplete()) {
+RandomLoopSequence.prototype.update = function (pattern, dt) {
+    if (!this.isComplete()) {
         if (this.currentSequence !== null && this.sequences[this.currentSequence].isComplete()) {
             this.resetCurrentSequence();
             this.waiting = true;
@@ -43,12 +41,12 @@ RandomLoopSequence.prototype.update = function(pattern, dt) {
     }
 };
 
-RandomLoopSequence.prototype.isComplete = function() {
+RandomLoopSequence.prototype.isComplete = function () {
     return this.sequences.length === 0 || (this.currentRepeatition >= this.repeatition && this.repeatition > 0);
 };
 
 RandomLoopSequence.prototype.resetCurrentSequence = function () {
-    if(this.currentSequence !== null) {
+    if (this.currentSequence !== null) {
         this.sequences[this.currentSequence].reset();
         this.previousSequence = this.currentSequence;
     }
@@ -57,7 +55,7 @@ RandomLoopSequence.prototype.resetCurrentSequence = function () {
     this.accumulatedTime = 0;
 };
 
-RandomLoopSequence.prototype.reset = function() {
+RandomLoopSequence.prototype.reset = function () {
     this.resetCurrentSequence();
 
     this.waiting = false;

@@ -1,3 +1,5 @@
+"use strict";
+
 var input = require('../input');
 
 module.exports = {
@@ -35,7 +37,7 @@ module.exports = {
         if (element.focused) {
             element.speed = element.focusedSpeed;
         } else {
-            element.speed = element.normalSpeed
+            element.speed = element.normalSpeed;
         }
 
         if (element.lastShot > 0) {

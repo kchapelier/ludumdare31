@@ -1,3 +1,5 @@
+"use strict";
+
 var keyboardjs = require('keyboardjs');
 
 var keyPressed = [];
@@ -23,22 +25,18 @@ Input.prototype.createInverseLookupTable = function () {
         keys,
         i;
 
-    console.log('createInverseLookupTable');
-
     this.inversedCommands = {};
 
     for (index in this.commands) {
         keys = this.commands[index];
 
-        for (var i = 0; i < keys.keys.length; i++) {
+        for (i = 0; i < keys.keys.length; i++) {
             this.inversedCommands[keys.keys[i]] = {
                 command: index,
                 group: keys.group
             };
         }
     }
-
-    //console.log(this.inversedCommands);
 };
 
 Input.prototype.update = function () {

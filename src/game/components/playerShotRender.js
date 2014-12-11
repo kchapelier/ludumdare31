@@ -1,7 +1,7 @@
 "use strict";
 
 var PIXI = require('pixi.js'),
-    textureCollection = require('./../textureCollection')
+    textureCollection = require('./../textureCollection');
 
 var texture = textureCollection.get('player-bullet');
 

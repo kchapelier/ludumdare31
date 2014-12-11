@@ -1,7 +1,5 @@
 "use strict";
 
-var Sequence = require('./sequence');
-
 var ParallelSequence = function (sequences) {
     this.sequences = sequences;
 };

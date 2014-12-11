@@ -19,7 +19,7 @@ module.exports = GameObject.createFactory(
             });
             element.highScoreElement.visible = false;
 
-            element.commandsElement = new PIXI.Text('Arrows or WASD to move.\r\nSPACE or X to shoot.\r\SHIFT, CTRL or V to focus.', {
+            element.commandsElement = new PIXI.Text('Arrows or WASD to move.\r\nSPACE or X to shoot.\r\nSHIFT, CTRL or V to focus.', {
                 font: 'normal 20px Arial',
                 fill: "#FFFFFF",
                 stroke: "#222222",
