@@ -2,19 +2,37 @@
 
 var PIXI = require('pixi.js');
 
-var BackgroundShader = function() {
-    PIXI.AbstractFilter.call( this );
+var BackgroundShader = function () {
+    PIXI.AbstractFilter.call(this);
 
     this.passes = [this];
 
     // set the uniforms
     this.uniforms = {
-        playerPositionX: {type: '1f', value: 0},
-        playerPositionY: {type: '1f', value: 0},
-        enemyPositionX: {type: '1f', value: 0},
-        enemyPositionY: {type: '1f', value: 0},
-        screenWidth: {type: '1f', value: 0},
-        screenHeight: {type: '1f', value: 0}
+        playerPositionX: {
+            type: '1f',
+            value: 0
+        },
+        playerPositionY: {
+            type: '1f',
+            value: 0
+        },
+        enemyPositionX: {
+            type: '1f',
+            value: 0
+        },
+        enemyPositionY: {
+            type: '1f',
+            value: 0
+        },
+        screenWidth: {
+            type: '1f',
+            value: 0
+        },
+        screenHeight: {
+            type: '1f',
+            value: 0
+        }
     };
 
     this.fragmentSrc = [
@@ -41,43 +59,43 @@ var BackgroundShader = function() {
     ];
 };
 
-BackgroundShader.prototype = Object.create( PIXI.AbstractFilter.prototype );
+BackgroundShader.prototype = Object.create(PIXI.AbstractFilter.prototype);
 BackgroundShader.prototype.constructor = BackgroundShader;
 
 Object.defineProperty(BackgroundShader.prototype, 'player', {
-    get: function() {
+    get: function () {
         return {
-            x : this.uniforms.playerPositionX.value,
-            y : this.uniforms.playerPositionY.value
+            x: this.uniforms.playerPositionX.value,
+            y: this.uniforms.playerPositionY.value
         };
     },
-    set: function(value) {
+    set: function (value) {
         this.uniforms.playerPositionX.value = value.x;
         this.uniforms.playerPositionY.value = value.y;
     }
 });
 
 Object.defineProperty(BackgroundShader.prototype, 'enemy', {
-    get: function() {
+    get: function () {
         return {
-            x : this.uniforms.enemyPositionX.value,
-            y : this.uniforms.enemyPositionY.value
+            x: this.uniforms.enemyPositionX.value,
+            y: this.uniforms.enemyPositionY.value
         };
     },
-    set: function(value) {
+    set: function (value) {
         this.uniforms.enemyPositionX.value = value.x;
         this.uniforms.enemyPositionY.value = value.y;
     }
 });
 
 Object.defineProperty(BackgroundShader.prototype, 'renderer', {
-    get: function() {
+    get: function () {
         return {
-            width : this.uniforms.screenWidth.value,
-            height : this.uniforms.screenHeight.value
+            width: this.uniforms.screenWidth.value,
+            height: this.uniforms.screenHeight.value
         };
     },
-    set: function(value) {
+    set: function (value) {
         this.uniforms.screenWidth.value = value.screenWidth;
         this.uniforms.screenHeight.value = value.screenHeight;
     }

@@ -29,13 +29,12 @@ textureCollection.load('enemy-sprite', 'placeholder.png');
 textureCollection.load('hitbox', 'hitbox.png');
 textureCollection.load('player-bullet', 'player-bullet.png');
 
-
-var start = function() {
+var start = function () {
     var running = false;
     var inIntro = false;
     renderer.infectDom('game');
     sound.play('intro', {
-        loop : true
+        loop: true
     });
 
     var loop = new Loop();
@@ -63,16 +62,16 @@ var start = function() {
     var container = document.getElementById('game');
 
     var mouse = {
-        x : 0,
-        y : 0
+        x: 0,
+        y: 0
     };
 
-    container.addEventListener('mousemove', function(e) {
+    container.addEventListener('mousemove', function (e) {
         mouse.x = e.x;
         mouse.y = e.y;
     });
 
-    var showIntro = function() {
+    var showIntro = function () {
         enemyIndicator.sprite.visible = false;
         enemy.sprite.visible = false;
         player.sprite.visible = false;
@@ -82,7 +81,7 @@ var start = function() {
         inIntro = true;
     };
 
-    var newGame = function() {
+    var newGame = function () {
         score = 0;
         sound.play('dissonant2');
         enemyIndicator.sprite.visible = true;
@@ -105,7 +104,7 @@ var start = function() {
         inIntro = false;
     };
 
-    var gameOver = function(score) {
+    var gameOver = function (score) {
         sound.play('dissonant3');
         highScores.set('normal', score, function (scores) {
             intro.setHighScore(scores);
@@ -113,7 +112,7 @@ var start = function() {
 
         running = false;
 
-        setTimeout(function() {
+        setTimeout(function () {
             showIntro();
 
             objectCollection.removeAll('playerShot');
@@ -121,7 +120,7 @@ var start = function() {
         }, 500);
     };
 
-    highScores.get(function(scores) {
+    highScores.get(function (scores) {
         intro.setHighScore(scores);
     });
 
@@ -138,12 +137,12 @@ var start = function() {
 
     showIntro();
 
-    loop.update = function(dt) {
+    loop.update = function (dt) {
         // Update the inputs
         input.update(dt);
 
-        if(inIntro) {
-            if(input.currentInput.SHOOT) {
+        if (inIntro) {
+            if (input.currentInput.SHOOT) {
                 newGame();
             }
 
@@ -152,7 +151,7 @@ var start = function() {
 
         // Entities
 
-        if(running) {
+        if (running) {
             player.update(dt);
             enemy.update(dt);
 
@@ -166,9 +165,9 @@ var start = function() {
         }
     };
 
-    loop.postUpdate = function(dt) {
+    loop.postUpdate = function (dt) {
         // Entities
-        if(running) {
+        if (running) {
             player.postUpdate(dt);
             enemy.postUpdate(dt);
 
@@ -221,23 +220,23 @@ var start = function() {
 
         background.postUpdate(dt);
 
-        if(inIntro) {
+        if (inIntro) {
             background.shader.player = mouse;
         }
     };
 
-    loop.render = function(dt) {
+    loop.render = function (dt) {
         // Entities
         scoreElement.render(dt);
         enemyIndicator.render(dt);
         player.render(dt);
         enemy.render(dt);
 
-        playerShotArray.forEach(function(shot) {
+        playerShotArray.forEach(function (shot) {
             shot.render(dt);
         });
 
-        enemyShotArray.forEach(function(shot) {
+        enemyShotArray.forEach(function (shot) {
             shot.render(dt);
         });
 

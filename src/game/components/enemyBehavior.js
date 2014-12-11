@@ -11,11 +11,14 @@ var Pattern = require('../patterns/pattern'),
 var player = null;
 
 module.exports = {
-    nextPosition : null,
-    moveDuration : 6000,
-    moveCounter : 0,
-    initialize : function (element) {
-        element.pattern = new Pattern(element, { x: 0, y: 0});
+    nextPosition: null,
+    moveDuration: 6000,
+    moveCounter: 0,
+    initialize: function (element) {
+        element.pattern = new Pattern(element, {
+            x: 0,
+            y: 0
+        });
 
         element.sequence = new RandomLoopSequence([
             new RandomLoopSequence([
@@ -136,28 +139,26 @@ module.exports = {
             ], 900, 6)
 
             /* BUGGED
-            new ParallelSequence([
-                new Sequence([
-                    ['bulletSpeed', 130],
-                    ['wait', 5000]
-                ], 1),
-                new Sequence([
-                    ['increaseBulletSpeed', 6],
-                    ['randomBulletSprite', 'small-enemy-bullet-negative', 'small-enemy-bullet-yellow', 'small-enemy-bullet-blue', 'small-enemy-bullet-red'],
-                    ['randomShot', 1, Math.PI / 7, 0, true],
-                    ['wait', 20]
-                ], 120)
-            ], 1) */
+             new ParallelSequence([
+             new Sequence([
+             ['bulletSpeed', 130],
+             ['wait', 5000]
+             ], 1),
+             new Sequence([
+             ['increaseBulletSpeed', 6],
+             ['randomBulletSprite', 'small-enemy-bullet-negative', 'small-enemy-bullet-yellow', 'small-enemy-bullet-blue', 'small-enemy-bullet-red'],
+             ['randomShot', 1, Math.PI / 7, 0, true],
+             ['wait', 20]
+             ], 120)
+             ], 1) */
 
         ], 2250);
     },
-    update : function(element, dt) {
-        if(player === null) {
+    update: function (element, dt) {
+        if (player === null) {
             player = collection.getArray('player')[0];
             element.pattern.setDestination(player);
         }
-
-
 
         element.pattern.update();
         element.sequence.update(element.pattern, dt);
@@ -165,7 +166,7 @@ module.exports = {
         var margin = 20,
             distance = 350;
 
-        if(element.moveCounter <= 0 && Math.random() > 0.99) {
+        if (element.moveCounter <= 0 && Math.random() > 0.99) {
             element.nextPosition = {
                 x: Math.min(renderer.screenWidth - margin, Math.max(margin, element.x + (Math.random() - 0.5) * distance)),
                 y: Math.min(renderer.screenHeight / 5, Math.max(margin, element.y + (Math.random() - 0.5) * distance / 5))
@@ -174,8 +175,8 @@ module.exports = {
             element.moveCounter = element.moveDuration;
         }
     },
-    postUpdate : function(element, dt) {
-        if(element.nextPosition) {
+    postUpdate: function (element, dt) {
+        if (element.nextPosition) {
             element.moveCounter -= dt;
             var v = new Victor(element.x, element.y);
             v.mix(element.nextPosition, Math.min(1, 1 - (element.moveCounter / element.moveDuration)));

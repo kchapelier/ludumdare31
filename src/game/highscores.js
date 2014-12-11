@@ -3,23 +3,23 @@
 var localForage = require('localforage');
 
 var highScores = {
-    get : function(callback) {
-        localForage.getItem('scores', function(err, scores) {
+    get: function (callback) {
+        localForage.getItem('scores', function (err, scores) {
             scores = scores || {};
 
-            if(!scores.normal) {
+            if (!scores.normal) {
                 scores.normal = 0;
             }
 
-            if(!scores.fullscreen) {
+            if (!scores.fullscreen) {
                 scores.fullscreen = 0;
             }
 
             callback(scores);
         });
     },
-    set : function(gameType, score, callback) {
-        highScores.get(function(scores) {
+    set: function (gameType, score, callback) {
+        highScores.get(function (scores) {
             scores[gameType] = Math.max(score, scores[gameType]);
             localForage.setItem('scores', scores);
             callback(scores);

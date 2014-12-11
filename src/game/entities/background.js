@@ -9,23 +9,22 @@ var GameObject = require('../../lib/quick-and-dirty-gameobject'),
 var player = null,
     enemy = null;
 
-
 module.exports = GameObject.createFactory(
     {
-        x : 0,
-        y : 0,
-        sprite : null,
-        width : null,
-        initialize : function (element) {
+        x: 0,
+        y: 0,
+        sprite: null,
+        width: null,
+        initialize: function (element) {
             element.sprite = new PIXI.DisplayObjectContainer();
             element.shader = new BackgroundShader();
             element.sprite.filters = [element.shader];
 
-            for(var i = 0; i < 10; i++) {
+            for (var i = 0; i < 10; i++) {
                 element.createRandomGraphic();
             }
         },
-        createRandomGraphic : function() {
+        createRandomGraphic: function () {
             // create a new graphics object
             var graphics = new PIXI.Graphics();
 
@@ -45,8 +44,8 @@ module.exports = GameObject.createFactory(
             // add it the stage so we see it on our screens..
             this.sprite.addChild(graphics);
         },
-        postUpdate : function (element) {
-            if(player === null || enemy === null) {
+        postUpdate: function (element) {
+            if (player === null || enemy === null) {
                 player = collection.getArray('player')[0];
                 enemy = collection.getArray('enemy')[0];
             }

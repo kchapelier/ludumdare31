@@ -4,8 +4,8 @@ var renderer = require('../renderer'),
 var margin = 200;
 
 module.exports = {
-    postUpdate : function(element) {
-        if(
+    postUpdate: function (element) {
+        if (
             element.x < 0 - margin ||
             element.y < 0 - margin ||
             element.x > renderer.screenWidth + margin ||

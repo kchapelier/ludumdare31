@@ -6,16 +6,16 @@ var PIXI = require('pixi.js'),
 var texture = textureCollection.get('small-enemy-bullet-yellow');
 
 module.exports = {
-    initialize : function(element) {
+    initialize: function (element) {
         var bulletTexture;
 
-        if(!!element.texture) {
+        if (!!element.texture) {
             bulletTexture = textureCollection.get(element.texture);
         }
 
         element.sprite = new PIXI.Sprite(bulletTexture ? bulletTexture : texture);
     },
-    render : function(element) {
+    render: function (element) {
         element.sprite.x = Math.round(element.x);
         element.sprite.y = Math.round(element.y);
     }

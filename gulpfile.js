@@ -7,14 +7,14 @@ var gulp = require('gulp'),
 
 var files = ['./src/**/*.js', './gulpfile.js'];
 
-gulp.task('lint', function() {
+gulp.task('lint', function () {
     return gulp
         .src(files)
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('codestyle', function() {
+gulp.task('codestyle', function () {
     return gulp
         .src(files)
         .pipe(jscs());

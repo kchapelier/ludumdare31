@@ -1,6 +1,6 @@
 "use strict";
 
-var Sequence = function(operations, repeatition) {
+var Sequence = function (operations, repeatition) {
     this.operations = operations;
     this.repeatition = repeatition;
 
@@ -13,9 +13,9 @@ Sequence.prototype.accumulatedTime = null;
 Sequence.prototype.currentOperation = null;
 Sequence.prototype.currentRepeatition = null;
 
-Sequence.prototype.update = function(pattern, dt) {
-    if(!this.isComplete()) {
-        if(this.execute(pattern, this.operations[this.currentOperation], dt)) {
+Sequence.prototype.update = function (pattern, dt) {
+    if (!this.isComplete()) {
+        if (this.execute(pattern, this.operations[this.currentOperation], dt)) {
             //console.log('----');
             this.currentOperation++;
 
@@ -31,15 +31,15 @@ Sequence.prototype.update = function(pattern, dt) {
     return false;
 };
 
-Sequence.prototype.execute = function(pattern, operation, dt) {
+Sequence.prototype.execute = function (pattern, operation, dt) {
     var method = operation[0],
         args = [];
 
-    if(method === 'wait') {
-        this.accumulatedTime+= dt;
+    if (method === 'wait') {
+        this.accumulatedTime += dt;
         //console.log(this.accumulatedTime);
 
-        if(this.accumulatedTime >= operation[1]) {
+        if (this.accumulatedTime >= operation[1]) {
             this.accumulatedTime = 0;
             //console.log('reset accumulatedTime');
             return true;
@@ -57,11 +57,11 @@ Sequence.prototype.execute = function(pattern, operation, dt) {
     return false;
 };
 
-Sequence.prototype.isComplete = function() {
+Sequence.prototype.isComplete = function () {
     return this.operations.length === 0 || (this.currentRepeatition >= this.repeatition && this.repeatition > 1);
 };
 
-Sequence.prototype.reset = function() {
+Sequence.prototype.reset = function () {
     this.accumulatedTime = 0;
     this.currentOperation = 0;
     this.currentRepeatition = 0;

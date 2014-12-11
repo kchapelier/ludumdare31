@@ -6,16 +6,31 @@ var GameObject = require('../../lib/quick-and-dirty-gameobject'),
 
 module.exports = GameObject.createFactory(
     {
-        score : 0,
-        initialize : function (element) {
+        score: 0,
+        initialize: function (element) {
             element.sprite = new PIXI.DisplayObjectContainer();
             element.numeralScore = numeral(element.score);
             element.numeralScore.format('0,0');
-            element.highScoreElement = new PIXI.Text('Highscore: ' + element.score, { font : '20px Arial',fill : "#FFFFFF", stroke : "#222222", strokeThickness : 4 });
+            element.highScoreElement = new PIXI.Text('Highscore: ' + element.score, {
+                font: '20px Arial',
+                fill: "#FFFFFF",
+                stroke: "#222222",
+                strokeThickness: 4
+            });
             element.highScoreElement.visible = false;
 
-            element.commandsElement = new PIXI.Text('Arrows or WASD to move.\r\nSPACE or X to shoot.\r\SHIFT, CTRL or V to focus.', { font : 'normal 20px Arial',fill : "#FFFFFF", stroke : "#222222", strokeThickness : 4 });
-            element.pressElement = new PIXI.Text('Press SPACE to play', { font : '30px Arial',fill : "#FFFFFF", stroke : "#222222", strokeThickness : 4 });
+            element.commandsElement = new PIXI.Text('Arrows or WASD to move.\r\nSPACE or X to shoot.\r\SHIFT, CTRL or V to focus.', {
+                font: 'normal 20px Arial',
+                fill: "#FFFFFF",
+                stroke: "#222222",
+                strokeThickness: 4
+            });
+            element.pressElement = new PIXI.Text('Press SPACE to play', {
+                font: '30px Arial',
+                fill: "#FFFFFF",
+                stroke: "#222222",
+                strokeThickness: 4
+            });
 
             element.highScoreElement.x = 10;
             element.highScoreElement.y = 10;
@@ -32,8 +47,9 @@ module.exports = GameObject.createFactory(
 
             element.sprite.addChild(element.pressElement);
         },
-        render : function(element) {},
-        setHighScore : function (scores) {
+        render: function (element) {
+        },
+        setHighScore: function (scores) {
             console.log(scores);
             this.score = scores.normal;
             this.numeralScore.set(this.score);

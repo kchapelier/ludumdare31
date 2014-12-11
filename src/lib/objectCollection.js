@@ -4,19 +4,19 @@ var EventEmitter = require('events').EventEmitter;
 
 var dictionary = {};
 
-var ensureArray = function(type) {
-    if(!dictionary[type]) {
+var ensureArray = function (type) {
+    if (!dictionary[type]) {
         dictionary[type] = [];
     }
 };
 
-var Collection = function() {
+var Collection = function () {
     EventEmitter.call(this);
 };
 
 Collection.prototype = new EventEmitter();
 
-Collection.prototype.add = function(type, object) {
+Collection.prototype.add = function (type, object) {
     ensureArray(type);
     dictionary[type].push(object);
 
@@ -24,11 +24,11 @@ Collection.prototype.add = function(type, object) {
     this.emit('add.' + type, object);
 };
 
-Collection.prototype.remove = function(type, object) {
-    if(!!dictionary[type]) {
+Collection.prototype.remove = function (type, object) {
+    if (!!dictionary[type]) {
         var pos = dictionary[type].indexOf(object);
 
-        if(pos > -1) {
+        if (pos > -1) {
             dictionary[type].splice(pos, 1);
             this.emit('remove', object);
             this.emit('remove.' + type, object);
@@ -36,11 +36,11 @@ Collection.prototype.remove = function(type, object) {
     }
 };
 
-Collection.prototype.removeAll = function(type) {
+Collection.prototype.removeAll = function (type) {
     var array = this.getArray(type),
         self = this;
 
-    array.forEach(function(element) {
+    array.forEach(function (element) {
         self.emit('remove', element);
         self.emit('remove.' + type, element);
     });
@@ -48,7 +48,7 @@ Collection.prototype.removeAll = function(type) {
     array.splice(0, array.length); //empty the array
 };
 
-Collection.prototype.getArray = function(type) {
+Collection.prototype.getArray = function (type) {
     ensureArray(type);
     return dictionary[type];
 };
