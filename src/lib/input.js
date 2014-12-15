@@ -1,11 +1,10 @@
-"use strict";
-
-var keyboardjs = require('keyboardjs');
+var vkey = require('vkey');
 
 var keyPressed = [];
 
-var Input = function (commands) {
+var Input = function(commands) {
     this.currentInput = {};
+    this.attach();
     this.setCommands(commands);
 };
 
@@ -14,7 +13,6 @@ Input.prototype.inversedCommands = null;
 Input.prototype.currentInput = null;
 
 Input.prototype.setCommands = function (commands) {
-    console.log('setCommands');
     this.currentInput = {};
     this.commands = commands;
     this.createInverseLookupTable();
@@ -39,12 +37,22 @@ Input.prototype.createInverseLookupTable = function () {
     }
 };
 
+//TODO use object instead ?
+
+Input.prototype.activateKey = function (key) {
+    if(keyPressed.indexOf(key) === -1) {
+        keyPressed.push(key);
+    }
+};
+
+Input.prototype.deactivateKey = function (key) {
+    keyPressed.splice(keyPressed.indexOf(key), 1);
+};
+
 Input.prototype.update = function () {
     var key,
         index,
         i;
-
-    keyPressed = keyboardjs.activeKeys();
 
     for (index in this.commands) {
         this.currentInput[index] = false;
@@ -57,6 +65,22 @@ Input.prototype.update = function () {
             this.currentInput[this.inversedCommands[key].command] = true;
         }
     }
+};
+
+Input.prototype.attach = function() {
+    var self = this;
+
+    document.body.addEventListener('keydown', function(e) {
+        self.activateKey(vkey[e.keyCode]);
+    });
+
+    document.body.addEventListener('keyup', function(e) {
+        self.deactivateKey(vkey[e.keyCode]);
+    });
+};
+
+Input.prototype.detach = function() {
+
 };
 
 module.exports = Input;
