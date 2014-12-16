@@ -1,6 +1,6 @@
 var Input = require('../lib/input');
 
-module.exports = new Input({
+var input = new Input({
     SHOOT: {
         keys: ['<space>', 'X'],
         group: 'shoot'
@@ -26,3 +26,7 @@ module.exports = new Input({
         group: 'axisH'
     }
 });
+
+input.attach();
+
+module.exports = input;

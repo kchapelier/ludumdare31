@@ -1,20 +1,19 @@
 var vkey = require('vkey');
 
-var keyPressed = [];
-
 var Input = function(commands) {
-    this.currentInput = {};
-    this.attach();
     this.setCommands(commands);
 };
 
 Input.prototype.commands = null;
 Input.prototype.inversedCommands = null;
+Input.prototype.activeCommands = null;
 Input.prototype.currentInput = null;
 
 Input.prototype.setCommands = function (commands) {
     this.currentInput = {};
-    this.commands = commands;
+    this.activeCommands = [];
+    this.commands = commands || {};
+
     this.createInverseLookupTable();
 };
 
@@ -37,19 +36,23 @@ Input.prototype.createInverseLookupTable = function () {
     }
 };
 
-//TODO use object instead ?
-
 Input.prototype.activateKey = function (key) {
-    if(keyPressed.indexOf(key) === -1) {
-        keyPressed.push(key);
+    var command = this.inversedCommands[key];
+
+    if(command && this.activeCommands.indexOf(command) === -1) {
+        this.activeCommands.push(command);
     }
 };
 
 Input.prototype.deactivateKey = function (key) {
-    keyPressed.splice(keyPressed.indexOf(key), 1);
+    var command = this.inversedCommands[key];
+
+    if(command) {
+        this.activeCommands.splice(this.activeCommands.lastIndexOf(command), 1);
+    }
 };
 
-Input.prototype.update = function () {
+Input.prototype.update = function (dt) {
     var key,
         index,
         i;
@@ -58,28 +61,33 @@ Input.prototype.update = function () {
         this.currentInput[index] = false;
     }
 
-    for (i = 0; i < keyPressed.length; i++) {
-        key = keyPressed[i];
+    var groupSetted = {};
 
-        if (this.inversedCommands.hasOwnProperty(key)) {
-            this.currentInput[this.inversedCommands[key].command] = true;
+    for (i = this.activeCommands.length; i--;) {
+        var command = this.activeCommands[i];
+
+        if(!groupSetted[command.group]) {
+            groupSetted[command.group] = true;
+            this.currentInput[command.command] = true;
         }
     }
 };
 
-Input.prototype.attach = function() {
+Input.prototype.attach = function(element) {
     var self = this;
 
-    document.body.addEventListener('keydown', function(e) {
+    element = element || document.body;
+
+    element.addEventListener('keydown', function(e) {
         self.activateKey(vkey[e.keyCode]);
     });
 
-    document.body.addEventListener('keyup', function(e) {
+    element.addEventListener('keyup', function(e) {
         self.deactivateKey(vkey[e.keyCode]);
     });
 };
 
-Input.prototype.detach = function() {
+Input.prototype.detach = function(element) {
 
 };
 
