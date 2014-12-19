@@ -2,6 +2,7 @@ var vkey = require('vkey');
 
 var Input = function(commands) {
     this.setCommands(commands);
+    this.defineHandlers();
 };
 
 Input.prototype.commands = null;
@@ -9,12 +10,27 @@ Input.prototype.inversedCommands = null;
 Input.prototype.activeCommands = null;
 Input.prototype.currentInput = null;
 
+Input.prototype.keyDownHandler = null;
+Input.prototype.keyUpHandler = null;
+
 Input.prototype.setCommands = function (commands) {
     this.currentInput = {};
     this.activeCommands = [];
     this.commands = commands || {};
 
     this.createInverseLookupTable();
+};
+
+Input.prototype.defineHandlers = function() {
+    var self = this;
+
+    this.keyDownHandler = function(e) {
+        self.activateKey(vkey[e.keyCode]);
+    };
+
+    this.keyUpHandler = function(e) {
+        self.deactivateKey(vkey[e.keyCode]);
+    };
 };
 
 Input.prototype.createInverseLookupTable = function () {
@@ -25,13 +41,15 @@ Input.prototype.createInverseLookupTable = function () {
     this.inversedCommands = {};
 
     for (index in this.commands) {
-        keys = this.commands[index];
+        if(this.commands.hasOwnProperty(index)) {
+            keys = this.commands[index];
 
-        for (i = 0; i < keys.keys.length; i++) {
-            this.inversedCommands[keys.keys[i]] = {
-                command: index,
-                group: keys.group
-            };
+            for (i = 0; i < keys.keys.length; i++) {
+                this.inversedCommands[keys.keys[i]] = {
+                    command: index,
+                    group: keys.group
+                };
+            }
         }
     }
 };
@@ -53,7 +71,7 @@ Input.prototype.deactivateKey = function (key) {
 };
 
 Input.prototype.update = function (dt) {
-    var key,
+    var setGroup = {},
         index,
         i;
 
@@ -61,34 +79,26 @@ Input.prototype.update = function (dt) {
         this.currentInput[index] = false;
     }
 
-    var groupSetted = {};
-
     for (i = this.activeCommands.length; i--;) {
         var command = this.activeCommands[i];
 
-        if(!groupSetted[command.group]) {
-            groupSetted[command.group] = true;
+        if(!setGroup[command.group]) {
+            setGroup[command.group] = true;
             this.currentInput[command.command] = true;
         }
     }
 };
 
 Input.prototype.attach = function(element) {
-    var self = this;
-
     element = element || document.body;
-
-    element.addEventListener('keydown', function(e) {
-        self.activateKey(vkey[e.keyCode]);
-    });
-
-    element.addEventListener('keyup', function(e) {
-        self.deactivateKey(vkey[e.keyCode]);
-    });
+    element.addEventListener('keydown', this.keyDownHandler);
+    element.addEventListener('keyup', this.keyUpHandler);
 };
 
 Input.prototype.detach = function(element) {
-
+    element = element || document.body;
+    element.removeEventListener('keydown', this.keyDownHandler);
+    element.removeEventListener('keyup', this.keyUpHandler);
 };
 
 module.exports = Input;
