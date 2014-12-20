@@ -22,6 +22,7 @@
   "dependencies": {
     "howler": "^1.1.25",
     "localforage": "^1.1.1",
+    "migl-gameloop": "^1.0.0",
     "numeral": "^1.5.3",
     "perlin": "^1.0.0",
     "pixi.js": "^2.1.1",

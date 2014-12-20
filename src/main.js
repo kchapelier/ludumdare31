@@ -1,6 +1,6 @@
 "use strict";
 
-var Loop = require('./lib/gameloop'),
+var Loop = require('migl-gameloop'),
     input = require('./game/input'),
     renderer = require('./game/renderer'),
     sound = require('./game/sound'),
