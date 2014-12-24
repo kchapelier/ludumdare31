@@ -1,4 +1,4 @@
-var Input = require('../lib/input');
+var Input = require('migl-input');
 
 var input = new Input({
     SHOOT: {
