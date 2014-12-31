@@ -97,6 +97,7 @@ var start = function () {
         enemy.x = (renderer.screenWidth - 32) / 2;
         enemy.y = 50;
         enemy.nextPosition = null;
+        enemy.moveCounter = 0;
 
         scoreElement.setScore(score);
         enemy.sequence.reset();
@@ -148,8 +149,6 @@ var start = function () {
             if (input.currentInput.SHOOT) {
                 newGame();
             }
-
-            player.hitbox.visible = true; //hack for a bug somewhere, I'm tired leave me alone :)
         }
 
         // Entities

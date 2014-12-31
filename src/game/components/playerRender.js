@@ -18,9 +18,9 @@ module.exports = {
         element.hitbox.y = Math.round(element.y + 11);
 
         if (element.focused) {
-            element.hitbox.visible = true;
+            element.hitbox.alpha = 1;
         } else {
-            element.hitbox.visible = false;
+            element.hitbox.alpha = 0;
         }
     }
 };
