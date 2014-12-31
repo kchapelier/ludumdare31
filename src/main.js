@@ -96,6 +96,7 @@ var start = function () {
         player.y = 450;
         enemy.x = (renderer.screenWidth - 32) / 2;
         enemy.y = 50;
+        enemy.nextPosition = null;
 
         scoreElement.setScore(score);
         enemy.sequence.reset();
