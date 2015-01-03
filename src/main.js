@@ -1,5 +1,19 @@
 "use strict";
 
+var browserLanguage = require('in-browser-language');
+
+console.log(browserLanguage.list());
+// returns ['fr', 'en']
+
+console.log(browserLanguage.pick(['pl', 'ja', 'en', 'fr']));
+// returns 'fr' as 'fr' is the first declared by the browser
+
+console.log(browserLanguage.pick(['pl', 'jp'], 'pl'));
+// returns 'pl' as there is no match
+
+console.log(browserLanguage.pick(['pl', 'jp']));
+// returns null as there is no match and no defaultLanguage
+
 var Loop = require('migl-gameloop'),
     input = require('./game/input'),
     renderer = require('./game/renderer'),
@@ -181,25 +195,31 @@ var start = function () {
                 shot.postUpdate(dt);
             });
 
-            //check collision enemyShot > player
+            //check collision enemyShot > player, using circle collision because it's better
 
-            var sizePlayerHitbox = player.hitbox.width,
-                playerHitboxX = player.hitbox.x,
-                playerHitboxY = player.hitbox.y;
+            var sizePlayerHitbox_2 = player.hitbox.width / 2,
+                playerHitboxX = player.hitbox.x + sizePlayerHitbox_2,
+                playerHitboxY = player.hitbox.y + sizePlayerHitbox_2;
 
             enemyShotArray.forEach(function (shot) {
-                var sizeEnemyShot = shot.sprite.width / 4;
+                var sizeEnemyShot = shot.sprite.width,
+                    sizeEnemyShot_2 = shot.sprite.width / 2,
+                    shotX = shot.x + sizeEnemyShot_2,
+                    shotY = shot.y + sizeEnemyShot_2;
 
-                var diffX = Math.abs(playerHitboxX - shot.x - sizeEnemyShot);
-                var diffY = Math.abs(playerHitboxY - shot.y - sizeEnemyShot);
+                //euclidean distance
+                var euclideanDistance = Math.sqrt(
+                    Math.pow(playerHitboxX - shot.x - sizeEnemyShot_2, 2) +
+                    Math.pow(playerHitboxY - shot.y - sizeEnemyShot_2, 2)
+                );
 
-                if (diffY < sizePlayerHitbox && diffX < sizePlayerHitbox) {
+                if (euclideanDistance < (sizeEnemyShot_2 + sizePlayerHitbox_2)) {
                     objectCollection.remove('enemyShot', shot);
                     gameOver(score);
                 }
             });
 
-            //check collision playerShot > enemy
+            //check collision playerShot > enemy, using square collision because it's faster
 
             playerShotArray.forEach(function (shot) {
                 var sizeEnemyHitbox = 32;
