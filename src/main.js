@@ -214,7 +214,7 @@ var start = function () {
                 );
 
                 if (euclideanDistance < (sizeEnemyShot_2 + sizePlayerHitbox_2)) {
-                    objectCollection.remove('enemyShot', shot);
+                    //objectCollection.remove('enemyShot', shot);
                     gameOver(score);
                 }
             });
