@@ -25,7 +25,6 @@
     "migl-gameloop": "^1.0.0",
     "migl-input": "^1.0.0",
     "numeral": "^1.5.3",
-    "perlin": "^1.0.0",
     "pixi.js": "^2.1.1",
     "victor": "^0.2.6"
   },

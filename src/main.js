@@ -1,25 +1,10 @@
 "use strict";
 
-var browserLanguage = require('in-browser-language');
-
-console.log(browserLanguage.list());
-// returns ['fr', 'en']
-
-console.log(browserLanguage.pick(['pl', 'ja', 'en', 'fr']));
-// returns 'fr' as 'fr' is the first declared by the browser
-
-console.log(browserLanguage.pick(['pl', 'jp'], 'pl'));
-// returns 'pl' as there is no match
-
-console.log(browserLanguage.pick(['pl', 'jp']));
-// returns null as there is no match and no defaultLanguage
-
 var Loop = require('migl-gameloop'),
     input = require('./game/input'),
     renderer = require('./game/renderer'),
     sound = require('./game/sound'),
     highScores = require('./game/highscores'),
-    //perlin = require('perlin'),
     objectCollection = require('./game/objectCollection'),
     textureCollection = require('./game/textureCollection');
 
