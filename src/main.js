@@ -27,7 +27,7 @@ textureCollection.load('small-enemy-bullet-negative', 'small-enemy-bullet-negati
 
 textureCollection.load('player-sprite', 'placeholder.png');
 textureCollection.load('enemy-sprite', 'placeholder.png');
-textureCollection.load('hitbox', 'hitbox.png');
+textureCollection.load('hitbox', 'hitbox-v2.png');
 textureCollection.load('player-bullet', 'player-bullet.png');
 
 var start = function () {
