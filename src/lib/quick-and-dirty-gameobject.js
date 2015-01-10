@@ -4,7 +4,7 @@ var GameObject = {
     createFactory: function (baseComponents) {
         var components = arguments;
 
-        return function (otherComponents) {
+        return function gameObjectFactory (otherComponents) {
             var allComponents = [],
                 i;
 
@@ -16,7 +16,7 @@ var GameObject = {
                 allComponents.push(arguments[i]);
             }
 
-            return GameObject.create.apply(GameObject, allComponents);
+            return GameObject.create.apply(null, allComponents);
         };
     },
     create: function (components) {
@@ -31,6 +31,11 @@ var GameObject = {
             i;
 
         var object = {
+            initialize: function () {
+                for (var i = 0; i < initFunctions.length; i++) {
+                    initFunctions[i](this);
+                }
+            },
             update: function (dt) {
                 for (var i = 0; i < updateFunctions.length; i++) {
                     updateFunctions[i](this, dt);
@@ -82,11 +87,7 @@ var GameObject = {
             }
         }
 
-        for (i = 0; i < initFunctions.length; i++) {
-            initFunctions[i](object);
-        }
-
-        initFunctions = null;
+        object.initialize();
 
         return object;
     }

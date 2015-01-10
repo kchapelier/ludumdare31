@@ -30,6 +30,17 @@ textureCollection.load('enemy-sprite', 'placeholder.png');
 textureCollection.load('hitbox', 'hitbox-v2.png');
 textureCollection.load('player-bullet', 'player-bullet.png');
 
+var playerShotPool = require('./game/pools/playerShotPool'),
+    enemyShotPool = require('./game/pools/enemyShotPool');
+
+objectCollection.on('remove.playerShot', function (element) {
+    playerShotPool.free(element);
+});
+
+objectCollection.on('remove.enemyShot', function (element) {
+    enemyShotPool.free(element);
+});
+
 var start = function () {
     var running = false;
     var inIntro = false;
