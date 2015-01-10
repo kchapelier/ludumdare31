@@ -26,7 +26,7 @@ Pool.prototype.allocate = function (number) {
 Pool.prototype.get = function (initializationOptions) {
     var element;
 
-    if(this.availableInstances.length < 1) {
+    if (this.availableInstances.length < 1) {
         this.allocate(5);
     }
 

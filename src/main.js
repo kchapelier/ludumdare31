@@ -182,22 +182,22 @@ var start = function () {
 
             //check collision enemyShot > player, using circle collision because it's better
 
-            var sizePlayerHitbox_2 = player.hitbox.width / 2,
-                playerHitboxX = player.hitbox.x + sizePlayerHitbox_2,
-                playerHitboxY = player.hitbox.y + sizePlayerHitbox_2,
+            var sizePlayerHitboxDiv2 = player.hitbox.width / 2,
+                playerHitboxX = player.hitbox.x + sizePlayerHitboxDiv2,
+                playerHitboxY = player.hitbox.y + sizePlayerHitboxDiv2,
                 sizeEnemyHitbox = enemy.sprite.width;
 
             enemyShotArray.forEach(function (shot) {
-                var sizeEnemyShot_2 = shot.sprite.width / 2,
-                    sizeShotHitbox_2 = sizeEnemyShot_2 / 4; // arbitrary sprite to hitbox ratio
+                var sizeEnemyShotDiv2 = shot.sprite.width / 2,
+                    sizeShotHitboxDiv2 = sizeEnemyShotDiv2 / 4; // arbitrary sprite to hitbox ratio
 
                 //euclidean distance
                 var euclideanDistance = Math.sqrt(
-                    Math.pow(playerHitboxX - shot.x - sizeEnemyShot_2, 2) +
-                    Math.pow(playerHitboxY - shot.y - sizeEnemyShot_2, 2)
+                    Math.pow(playerHitboxX - shot.x - sizeEnemyShotDiv2, 2) +
+                    Math.pow(playerHitboxY - shot.y - sizeEnemyShotDiv2, 2)
                 );
 
-                if (euclideanDistance < (sizeShotHitbox_2 + sizePlayerHitbox_2)) {
+                if (euclideanDistance < (sizeShotHitboxDiv2 + sizePlayerHitboxDiv2)) {
                     //objectCollection.remove('enemyShot', shot);
                     gameOver(score);
                 }
