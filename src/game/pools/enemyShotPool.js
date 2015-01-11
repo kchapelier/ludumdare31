@@ -11,7 +11,7 @@ module.exports = pool({
         element.y = options.y;
         element.speed = options.speed;
         element.directionIntent = options.directionIntent;
-        //element.initialize();
+        element.setTexture(options.texture);
     },
-    initialNumber: 100
+    initialNumber: 1500
 });

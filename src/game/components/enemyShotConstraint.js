@@ -1,9 +1,8 @@
 "use strict";
 
 var renderer = require('../renderer'),
-    objectCollection = require('../objectCollection');
-
-var margin = 200;
+    objectCollection = require('../objectCollection'),
+    margin = 50;
 
 module.exports = {
     postUpdate: function (element) {

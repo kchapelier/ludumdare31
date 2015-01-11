@@ -2,8 +2,20 @@
 
 var Victor = require('victor'),
     collection = require('../objectCollection'),
-    shotFactory = require('../entities/enemyShot');
+    shotFactory = require('../entities/enemyShot'),
+    shotPool = require('../pools/enemyShotPool');
 
+/* */
+var shot = function (position, speed, sprite, direction) {
+    collection.add('enemyShot', shotPool.get({
+        x: position.x,
+        y: position.y,
+        texture: sprite,
+        speed: speed,
+        directionIntent: direction
+    }));
+};
+/*/
 var shot = function (position, speed, sprite, direction) {
     collection.add('enemyShot', shotFactory({
         x: position.x,
@@ -13,6 +25,7 @@ var shot = function (position, speed, sprite, direction) {
         directionIntent: direction
     }));
 };
+/**/
 
 var Pattern = function (source, destination) {
     this.source = source;

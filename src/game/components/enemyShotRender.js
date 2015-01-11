@@ -18,5 +18,8 @@ module.exports = {
     render: function (element) {
         element.sprite.x = Math.round(element.x);
         element.sprite.y = Math.round(element.y);
+    },
+    setTexture: function(texture) {
+        this.sprite.setTexture(textureCollection.get(texture));
     }
 };

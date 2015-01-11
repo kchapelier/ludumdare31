@@ -31,11 +31,6 @@ var GameObject = {
             i;
 
         var object = {
-            initialize: function () {
-                for (var i = 0; i < initFunctions.length; i++) {
-                    initFunctions[i](this);
-                }
-            },
             update: function (dt) {
                 for (var i = 0; i < updateFunctions.length; i++) {
                     updateFunctions[i](this, dt);
@@ -87,7 +82,11 @@ var GameObject = {
             }
         }
 
-        object.initialize();
+        for (i = 0; i < initFunctions.length; i++) {
+            initFunctions[i](object);
+        }
+
+        initFunctions = null;
 
         return object;
     }
