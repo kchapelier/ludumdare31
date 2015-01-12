@@ -21,6 +21,48 @@ module.exports = {
         });
 
         element.sequence = new RandomLoopSequence([
+
+            /*
+            new Sequence([
+                ['bulletSprite', 'medium-enemy-bullet-yellow'],
+                ['setAngle', 0, true],
+                ['bulletSpeed', 130],
+                ['burst', 32, Math.PI * 2, 0, false],
+                ['wait', 10],
+                ['bulletSpeed', 150],
+                ['burst', 16, Math.PI * 2, 0, false],
+                ['wait', 10],
+                ['bulletSpeed', 170],
+                ['burst', 32, Math.PI * 2, 0, false],
+                ['wait', 10],
+                ['bulletSpeed', 195],
+                ['burst', 32, Math.PI * 2, 0, false],
+                ['wait', 10],
+                ['bulletSpeed', 220],
+                ['burst', 16, Math.PI * 2, 0, false],
+                ['wait', 40]
+            ], 4)
+            */
+
+            new Sequence([
+                ['bulletSprite', 'medium-enemy-bullet-yellow'],
+                ['setAngle', 0, true],
+                ['bulletSpeed', 130],
+                ['burst', 35, Math.PI * 2, 0, false],
+                ['wait', 40],
+                ['bulletSpeed', 150],
+                ['burst', 35, Math.PI * 2, 0, false],
+                ['wait', 40],
+                ['bulletSpeed', 170],
+                ['burst', 35, Math.PI * 2, 0, false],
+                ['wait', 40],
+                ['bulletSpeed', 195],
+                ['burst', 35, Math.PI * 2, 0, false],
+                ['wait', 40],
+                ['bulletSpeed', 220],
+                ['burst', 35, Math.PI * 2, 0, false],
+                ['wait', 120]
+            ], 18),
             new RandomLoopSequence([
                 new Sequence([
                     ['bulletSpeed', 180],
