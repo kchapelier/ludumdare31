@@ -4,10 +4,12 @@ var Pattern = require('../patterns/pattern'),
     collection = require('../objectCollection'),
     renderer = require('../renderer'),
     Victor = require('victor'),
+    enemySequenceLoop = require('../patterns/sequences/enemySequenceLoop');
+/*
     Sequence = require('../patterns/sequence'),
     //ParallelSequence = require('../patterns/parallelSequence'),
     RandomLoopSequence = require('../patterns/randomLoopSequence');
-
+*/
 var player = null;
 
 module.exports = {
@@ -20,181 +22,7 @@ module.exports = {
             y: 0
         });
 
-        element.sequence = new RandomLoopSequence([
-
-            /*
-            new Sequence([
-                ['setBulletSprite', 'medium-enemy-bullet-yellow'],
-                ['setAngle', 0, true],
-                ['setBulletSpeed', 130],
-                ['burst', 32, Math.PI * 2, 0, false],
-                ['wait', 10],
-                ['setBulletSpeed', 150],
-                ['burst', 16, Math.PI * 2, 0, false],
-                ['wait', 10],
-                ['setBulletSpeed', 170],
-                ['burst', 32, Math.PI * 2, 0, false],
-                ['wait', 10],
-                ['setBulletSpeed', 195],
-                ['burst', 32, Math.PI * 2, 0, false],
-                ['wait', 10],
-                ['setBulletSpeed', 220],
-                ['burst', 16, Math.PI * 2, 0, false],
-                ['wait', 40]
-            ], 4)
-            */
-
-            new Sequence([
-                ['setBulletSprite', 'medium-enemy-bullet-yellow'],
-                ['setAngle', 0, true],
-                ['setBulletSpeed', 130],
-                ['burst', 35, Math.PI * 2, 0, false],
-                ['wait', 40],
-                ['setBulletSpeed', 150],
-                ['burst', 35, Math.PI * 2, 0, false],
-                ['wait', 40],
-                ['setBulletSpeed', 170],
-                ['burst', 35, Math.PI * 2, 0, false],
-                ['wait', 40],
-                ['setBulletSpeed', 195],
-                ['burst', 35, Math.PI * 2, 0, false],
-                ['wait', 40],
-                ['setBulletSpeed', 220],
-                ['burst', 35, Math.PI * 2, 0, false],
-                ['wait', 120]
-            ], 18),
-            new RandomLoopSequence([
-                new Sequence([
-                    ['setBulletSpeed', 180],
-                    ['rotate', 0.2],
-                    ['setBulletSprite', 'small-enemy-bullet-blue'],
-                    ['randomShot', 12, Math.PI / 2 - 0.5, Math.PI / 2, false],
-                    ['setBulletSprite', 'small-enemy-bullet-red'],
-                    ['randomShot', 15, Math.PI / 1.5 - 0.5, -Math.PI / 2, false]
-                ], 140),
-                new Sequence([
-                    ['setBulletSpeed', 200],
-                    ['setBulletSprite', 'medium-enemy-bullet-yellow'],
-                    ['randomShot', 25, Math.PI - 0.7, Math.PI / 2, false],
-                    ['randomShot', 25, Math.PI - 0.7, -Math.PI / 2, false]
-                ], 10)
-            ], 0, 1),
-            new RandomLoopSequence([
-                new Sequence([
-                    ['wait', 75],
-                    ['setBulletSpeed', 270],
-                    ['randomAngle'],
-                    ['randomBulletSprite', 'small-enemy-bullet-yellow', 'small-enemy-bullet-red', 'small-enemy-bullet-blue'],
-                    ['burst', 10, Math.PI / 4, 0, false],
-                    ['randomBulletSprite', 'small-enemy-bullet-yellow', 'small-enemy-bullet-red', 'small-enemy-bullet-blue'],
-                    ['burst', 10, Math.PI / 4, Math.PI / 2, false],
-                    ['randomBulletSprite', 'small-enemy-bullet-yellow', 'small-enemy-bullet-red', 'small-enemy-bullet-blue'],
-                    ['burst', 10, Math.PI / 4, Math.PI / 2 * 2, false],
-                    ['randomBulletSprite', 'small-enemy-bullet-yellow', 'small-enemy-bullet-red', 'small-enemy-bullet-blue'],
-                    ['burst', 10, Math.PI / 4, Math.PI / 2 * 3, false]
-                ], 70),
-                new Sequence([
-                    ['wait', 65],
-                    ['setBulletSprite', 'small-enemy-bullet-blue'],
-                    ['setBulletSpeed', 350],
-                    ['setAngle', 0, true],
-                    ['burst', 18, Math.PI / 7, 0, false],
-                    ['burst', 18, Math.PI / 7, Math.PI / 2, false],
-                    ['burst', 18, Math.PI / 7, Math.PI / 2 * 2, false],
-                    ['burst', 18, Math.PI / 7, Math.PI / 2 * 3, false],
-                    ['wait', 65],
-                    ['setBulletSprite', 'small-enemy-bullet-negative'],
-                    ['setBulletSpeed', 350],
-                    ['setAngle', 0, true],
-                    ['burst', 18, Math.PI / 6, 0, false],
-                    ['burst', 18, Math.PI / 6, Math.PI / 2, false],
-                    ['burst', 18, Math.PI / 6, Math.PI / 2 * 2, false],
-                    ['burst', 18, Math.PI / 6, Math.PI / 2 * 3, false]
-                ], 9)
-            ], 0, 1),
-            new RandomLoopSequence([
-                new Sequence([
-                    ['setBulletSpeed', 200],
-                    ['setBulletSprite', 'medium-enemy-bullet-yellow'],
-                    ['burst', 5, 0.3, 0, false],
-                    ['burst', 5, 0.3, Math.PI, false],
-                    ['burst', 5, 0.3, Math.PI / 2, false],
-                    ['burst', 5, 0.3, Math.PI * 3 / 2, false],
-                    ['wait', 120],
-                    ['rotate', 0.1, Math.PI / 4],
-                    ['setBulletSprite', 'small-enemy-bullet-yellow'],
-                    ['burst', 5, 0.3, 0, false],
-                    ['burst', 5, 0.3, Math.PI, false],
-                    ['burst', 5, 0.3, Math.PI / 2, false],
-                    ['burst', 5, 0.3, Math.PI * 3 / 2, false],
-                    ['rotate', 0.40 - Math.PI / 2],
-                    ['wait', 100]
-                ], 70),
-                new Sequence([
-                    ['setBulletSpeed', 275],
-                    ['setBulletSprite', 'small-enemy-bullet-red'],
-                    ['burst', 5, 0.35, 0, false],
-                    ['burst', 5, 0.35, Math.PI, false],
-                    ['burst', 5, 0.35, Math.PI / 2, false],
-                    ['burst', 5, 0.35, Math.PI * 3 / 2, false],
-                    ['wait', 110],
-                    ['rotate', 0.1, Math.PI / 4],
-                    ['setBulletSprite', 'small-enemy-bullet-red'],
-                    ['burst', 5, 0.35, 0, false],
-                    ['burst', 5, 0.35, Math.PI, false],
-                    ['burst', 5, 0.35, Math.PI / 2, false],
-                    ['burst', 5, 0.35, Math.PI * 3 / 2, false],
-                    ['rotate', 0.40 - Math.PI / 2],
-                    ['wait', 90]
-                ], 70)
-            ], 0, 1),
-            new RandomLoopSequence([
-                new Sequence([
-                    ['setBulletSprite', 'small-enemy-bullet-blue'],
-                    ['setBulletSpeed', 110],
-                    ['burst', 12, Math.PI * 2, 0, false],
-                    ['wait', 50],
-                    ['increaseBulletSpeed', 5],
-                    ['burst', 12, Math.PI * 2, -0.055, false],
-                    ['wait', 50],
-                    ['increaseBulletSpeed', 6],
-                    ['burst', 12, Math.PI * 2, -0.11, false],
-                    ['wait', 50],
-                    ['increaseBulletSpeed', 7],
-                    ['burst', 12, Math.PI * 2, -0.165, false],
-                    ['increaseBulletSpeed', 90],
-                    ['setBulletSprite', 'medium-enemy-bullet-yellow'],
-                    ['randomShot', 30, Math.PI * 2, 0, false],
-                    ['wait', 140],
-                    ['rotate', 0.37]
-                ], 12),
-                new Sequence([
-                    ['setBulletSprite', 'small-enemy-bullet-negative'],
-                    ['setAngle', 0],
-                    ['setBulletSpeed', 100],
-                    ['burst', 55, Math.PI * 2, 0, false],
-                    ['wait', 130],
-                    ['burst', 55, Math.PI * 2, -0.13, false],
-                    ['wait', 190],
-                    ['rotate', 0.3]
-                ], 2)
-            ], 900, 6)
-
-            /* BUGGED
-             new ParallelSequence([
-             new Sequence([
-             ['setBulletSpeed', 130],
-             ['wait', 5000]
-             ], 1),
-             new Sequence([
-             ['increaseBulletSpeed', 6],
-             ['randomBulletSprite', 'small-enemy-bullet-negative', 'small-enemy-bullet-yellow', 'small-enemy-bullet-blue', 'small-enemy-bullet-red'],
-             ['randomShot', 1, Math.PI / 7, 0, true],
-             ['wait', 20]
-             ], 120)
-             ], 1) */
-
-        ], 2250);
+        element.sequence = enemySequenceLoop;
     },
     update: function (element, dt) {
         if (player === null) {

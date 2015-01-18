@@ -158,7 +158,6 @@ var start = function () {
         if (inIntro) {
             if (input.currentInput.SHOOT) {
                 newGame();
-
             }
         }
 
