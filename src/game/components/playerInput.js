@@ -13,22 +13,22 @@ module.exports = {
         var directionIntent = element.directionIntent;
 
         if (input.currentInput.UP) {
-            directionIntent.y = -1;
+            directionIntent.y = -input.currentInput.UP;
         } else if (input.currentInput.DOWN) {
-            directionIntent.y = 1;
+            directionIntent.y = input.currentInput.DOWN;
         } else {
             directionIntent.y = 0;
         }
 
         if (input.currentInput.LEFT) {
-            directionIntent.x = -1;
+            directionIntent.x = -input.currentInput.LEFT;
         } else if (input.currentInput.RIGHT) {
-            directionIntent.x = 1;
+            directionIntent.x = input.currentInput.RIGHT;
         } else {
             directionIntent.x = 0;
         }
 
-        if (directionIntent.x !== 0 || directionIntent.y !== 0) {
+        if ((directionIntent.x !== 0 || directionIntent.y !== 0) && directionIntent.lengthSq() > 1) {
             directionIntent.normalize();
         }
 
