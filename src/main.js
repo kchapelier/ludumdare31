@@ -158,6 +158,7 @@ var start = function () {
         if (inIntro) {
             if (input.currentInput.SHOOT) {
                 newGame();
+
             }
         }
 
@@ -177,17 +178,17 @@ var start = function () {
         }
     };
 
-    loop.postUpdate = function (dt) {
+    loop.postUpdate = function postUpdate (dt) {
         // Entities
         if (running) {
             player.postUpdate(dt);
             enemy.postUpdate(dt);
 
-            playerShotArray.forEach(function (shot) {
+            playerShotArray.forEach(function playerShotArrayPostUpdate (shot) {
                 shot.postUpdate(dt);
             });
 
-            enemyShotArray.forEach(function (shot) {
+            enemyShotArray.forEach(function enemyShotArrayPostUpdate (shot) {
                 shot.postUpdate(dt);
             });
 
@@ -198,34 +199,50 @@ var start = function () {
                 playerHitboxY = player.hitbox.y + sizePlayerHitboxDiv2,
                 sizeEnemyHitbox = enemy.sprite.width;
 
-            enemyShotArray.forEach(function (shot) {
-                var sizeEnemyShotDiv2 = shot.sprite.width / 2,
-                    sizeShotHitboxDiv2 = sizeEnemyShotDiv2 / 4; // arbitrary sprite to hitbox ratio
+            var enemyShotCollisions = function enemyShotCollisions () {
+                var shot,
+                    sizeEnemyShotDiv2 = 0,
+                    sizeShotHitboxDiv2 = 0,
+                    i,
+                    euclideanDistance = 0;
 
-                //euclidean distance
-                var euclideanDistance = Math.sqrt(
-                    Math.pow(playerHitboxX - shot.x - sizeEnemyShotDiv2, 2) +
-                    Math.pow(playerHitboxY - shot.y - sizeEnemyShotDiv2, 2)
-                );
+                for (i = 0; i < enemyShotArray.length; i++) {
+                    shot = enemyShotArray[i];
+                    sizeEnemyShotDiv2 = (shot.sprite.width) / 2;
+                    sizeShotHitboxDiv2 = sizeEnemyShotDiv2 / 3.5; // arbitrary sprite to hitbox ratio
+                    euclideanDistance = Math.sqrt(
+                        Math.pow(playerHitboxX - shot.x - sizeEnemyShotDiv2, 2) +
+                        Math.pow(playerHitboxY - shot.y - sizeEnemyShotDiv2, 2)
+                    );
 
-                if (euclideanDistance < (sizeShotHitboxDiv2 + sizePlayerHitboxDiv2)) {
-                    //objectCollection.remove('enemyShot', shot);
-                    gameOver(score);
+                    if (euclideanDistance < (sizeShotHitboxDiv2 + sizePlayerHitboxDiv2)) {
+                        gameOver(score);
+                    }
                 }
-            });
+            };
 
             //check collision playerShot > enemy, using square collision because it's faster
 
-            playerShotArray.forEach(function (shot) {
-                var diffX = Math.abs(enemy.x - shot.x),
-                    diffY = Math.abs(enemy.y - shot.y);
+            var playerShotCollisions = function playerShotCollisions () {
+                var shot,
+                    i;
 
-                if (diffY < sizeEnemyHitbox && diffX < sizeEnemyHitbox) {
-                    objectCollection.remove('playerShot', shot);
-                    sound.play('hit2');
-                    score += 100;
+                for (i = 0; i < playerShotArray.length; i++) {
+                    shot = playerShotArray[i];
+
+                    if (
+                        Math.abs(enemy.x - shot.x) < sizeEnemyHitbox &&
+                        Math.abs(enemy.y - shot.y) < sizeEnemyHitbox
+                    ) {
+                        objectCollection.remove('playerShot', shot);
+                        sound.play('hit2');
+                        score += 100;
+                    }
                 }
-            });
+            };
+
+            enemyShotCollisions();
+            playerShotCollisions();
 
             enemyIndicator.postUpdate(dt);
 
