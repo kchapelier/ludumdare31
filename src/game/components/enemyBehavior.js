@@ -24,57 +24,57 @@ module.exports = {
 
             /*
             new Sequence([
-                ['bulletSprite', 'medium-enemy-bullet-yellow'],
+                ['setBulletSprite', 'medium-enemy-bullet-yellow'],
                 ['setAngle', 0, true],
-                ['bulletSpeed', 130],
+                ['setBulletSpeed', 130],
                 ['burst', 32, Math.PI * 2, 0, false],
                 ['wait', 10],
-                ['bulletSpeed', 150],
+                ['setBulletSpeed', 150],
                 ['burst', 16, Math.PI * 2, 0, false],
                 ['wait', 10],
-                ['bulletSpeed', 170],
+                ['setBulletSpeed', 170],
                 ['burst', 32, Math.PI * 2, 0, false],
                 ['wait', 10],
-                ['bulletSpeed', 195],
+                ['setBulletSpeed', 195],
                 ['burst', 32, Math.PI * 2, 0, false],
                 ['wait', 10],
-                ['bulletSpeed', 220],
+                ['setBulletSpeed', 220],
                 ['burst', 16, Math.PI * 2, 0, false],
                 ['wait', 40]
             ], 4)
             */
 
             new Sequence([
-                ['bulletSprite', 'medium-enemy-bullet-yellow'],
+                ['setBulletSprite', 'medium-enemy-bullet-yellow'],
                 ['setAngle', 0, true],
-                ['bulletSpeed', 130],
+                ['setBulletSpeed', 130],
                 ['burst', 35, Math.PI * 2, 0, false],
                 ['wait', 40],
-                ['bulletSpeed', 150],
+                ['setBulletSpeed', 150],
                 ['burst', 35, Math.PI * 2, 0, false],
                 ['wait', 40],
-                ['bulletSpeed', 170],
+                ['setBulletSpeed', 170],
                 ['burst', 35, Math.PI * 2, 0, false],
                 ['wait', 40],
-                ['bulletSpeed', 195],
+                ['setBulletSpeed', 195],
                 ['burst', 35, Math.PI * 2, 0, false],
                 ['wait', 40],
-                ['bulletSpeed', 220],
+                ['setBulletSpeed', 220],
                 ['burst', 35, Math.PI * 2, 0, false],
                 ['wait', 120]
             ], 18),
             new RandomLoopSequence([
                 new Sequence([
-                    ['bulletSpeed', 180],
+                    ['setBulletSpeed', 180],
                     ['rotate', 0.2],
-                    ['bulletSprite', 'small-enemy-bullet-blue'],
+                    ['setBulletSprite', 'small-enemy-bullet-blue'],
                     ['randomShot', 12, Math.PI / 2 - 0.5, Math.PI / 2, false],
-                    ['bulletSprite', 'small-enemy-bullet-red'],
+                    ['setBulletSprite', 'small-enemy-bullet-red'],
                     ['randomShot', 15, Math.PI / 1.5 - 0.5, -Math.PI / 2, false]
                 ], 140),
                 new Sequence([
-                    ['bulletSpeed', 200],
-                    ['bulletSprite', 'medium-enemy-bullet-yellow'],
+                    ['setBulletSpeed', 200],
+                    ['setBulletSprite', 'medium-enemy-bullet-yellow'],
                     ['randomShot', 25, Math.PI - 0.7, Math.PI / 2, false],
                     ['randomShot', 25, Math.PI - 0.7, -Math.PI / 2, false]
                 ], 10)
@@ -82,7 +82,7 @@ module.exports = {
             new RandomLoopSequence([
                 new Sequence([
                     ['wait', 75],
-                    ['bulletSpeed', 270],
+                    ['setBulletSpeed', 270],
                     ['randomAngle'],
                     ['randomBulletSprite', 'small-enemy-bullet-yellow', 'small-enemy-bullet-red', 'small-enemy-bullet-blue'],
                     ['burst', 10, Math.PI / 4, 0, false],
@@ -95,16 +95,16 @@ module.exports = {
                 ], 70),
                 new Sequence([
                     ['wait', 65],
-                    ['bulletSprite', 'small-enemy-bullet-blue'],
-                    ['bulletSpeed', 350],
+                    ['setBulletSprite', 'small-enemy-bullet-blue'],
+                    ['setBulletSpeed', 350],
                     ['setAngle', 0, true],
                     ['burst', 18, Math.PI / 7, 0, false],
                     ['burst', 18, Math.PI / 7, Math.PI / 2, false],
                     ['burst', 18, Math.PI / 7, Math.PI / 2 * 2, false],
                     ['burst', 18, Math.PI / 7, Math.PI / 2 * 3, false],
                     ['wait', 65],
-                    ['bulletSprite', 'small-enemy-bullet-negative'],
-                    ['bulletSpeed', 350],
+                    ['setBulletSprite', 'small-enemy-bullet-negative'],
+                    ['setBulletSpeed', 350],
                     ['setAngle', 0, true],
                     ['burst', 18, Math.PI / 6, 0, false],
                     ['burst', 18, Math.PI / 6, Math.PI / 2, false],
@@ -114,15 +114,15 @@ module.exports = {
             ], 0, 1),
             new RandomLoopSequence([
                 new Sequence([
-                    ['bulletSpeed', 200],
-                    ['bulletSprite', 'medium-enemy-bullet-yellow'],
+                    ['setBulletSpeed', 200],
+                    ['setBulletSprite', 'medium-enemy-bullet-yellow'],
                     ['burst', 5, 0.3, 0, false],
                     ['burst', 5, 0.3, Math.PI, false],
                     ['burst', 5, 0.3, Math.PI / 2, false],
                     ['burst', 5, 0.3, Math.PI * 3 / 2, false],
                     ['wait', 120],
                     ['rotate', 0.1, Math.PI / 4],
-                    ['bulletSprite', 'small-enemy-bullet-yellow'],
+                    ['setBulletSprite', 'small-enemy-bullet-yellow'],
                     ['burst', 5, 0.3, 0, false],
                     ['burst', 5, 0.3, Math.PI, false],
                     ['burst', 5, 0.3, Math.PI / 2, false],
@@ -131,15 +131,15 @@ module.exports = {
                     ['wait', 100]
                 ], 70),
                 new Sequence([
-                    ['bulletSpeed', 275],
-                    ['bulletSprite', 'small-enemy-bullet-red'],
+                    ['setBulletSpeed', 275],
+                    ['setBulletSprite', 'small-enemy-bullet-red'],
                     ['burst', 5, 0.35, 0, false],
                     ['burst', 5, 0.35, Math.PI, false],
                     ['burst', 5, 0.35, Math.PI / 2, false],
                     ['burst', 5, 0.35, Math.PI * 3 / 2, false],
                     ['wait', 110],
                     ['rotate', 0.1, Math.PI / 4],
-                    ['bulletSprite', 'small-enemy-bullet-red'],
+                    ['setBulletSprite', 'small-enemy-bullet-red'],
                     ['burst', 5, 0.35, 0, false],
                     ['burst', 5, 0.35, Math.PI, false],
                     ['burst', 5, 0.35, Math.PI / 2, false],
@@ -150,8 +150,8 @@ module.exports = {
             ], 0, 1),
             new RandomLoopSequence([
                 new Sequence([
-                    ['bulletSprite', 'small-enemy-bullet-blue'],
-                    ['bulletSpeed', 110],
+                    ['setBulletSprite', 'small-enemy-bullet-blue'],
+                    ['setBulletSpeed', 110],
                     ['burst', 12, Math.PI * 2, 0, false],
                     ['wait', 50],
                     ['increaseBulletSpeed', 5],
@@ -163,15 +163,15 @@ module.exports = {
                     ['increaseBulletSpeed', 7],
                     ['burst', 12, Math.PI * 2, -0.165, false],
                     ['increaseBulletSpeed', 90],
-                    ['bulletSprite', 'medium-enemy-bullet-yellow'],
+                    ['setBulletSprite', 'medium-enemy-bullet-yellow'],
                     ['randomShot', 30, Math.PI * 2, 0, false],
                     ['wait', 140],
                     ['rotate', 0.37]
                 ], 12),
                 new Sequence([
-                    ['bulletSprite', 'small-enemy-bullet-negative'],
+                    ['setBulletSprite', 'small-enemy-bullet-negative'],
                     ['setAngle', 0],
-                    ['bulletSpeed', 100],
+                    ['setBulletSpeed', 100],
                     ['burst', 55, Math.PI * 2, 0, false],
                     ['wait', 130],
                     ['burst', 55, Math.PI * 2, -0.13, false],
@@ -183,7 +183,7 @@ module.exports = {
             /* BUGGED
              new ParallelSequence([
              new Sequence([
-             ['bulletSpeed', 130],
+             ['setBulletSpeed', 130],
              ['wait', 5000]
              ], 1),
              new Sequence([

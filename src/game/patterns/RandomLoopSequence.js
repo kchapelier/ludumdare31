@@ -26,8 +26,6 @@ RandomLoopSequence.prototype.update = function (pattern, dt) {
             } while (this.previousSequence === this.currentSequence && this.sequences.length > 1);
         }
 
-        //console.log(this.previousSequence, this.currentSequence);
-
         if (this.waiting) {
             this.accumulatedTime += dt;
 
