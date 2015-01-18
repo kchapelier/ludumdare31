@@ -16,7 +16,6 @@ Sequence.prototype.currentRepeatition = null;
 Sequence.prototype.update = function (pattern, dt) {
     if (!this.isComplete()) {
         if (this.execute(pattern, this.operations[this.currentOperation], dt)) {
-            //console.log('----');
             this.currentOperation++;
 
             if (this.currentOperation >= this.operations.length) {
@@ -37,11 +36,9 @@ Sequence.prototype.execute = function (pattern, operation, dt) {
 
     if (method === 'wait') {
         this.accumulatedTime += dt;
-        //console.log(this.accumulatedTime);
 
         if (this.accumulatedTime >= operation[1]) {
             this.accumulatedTime = 0;
-            //console.log('reset accumulatedTime');
             return true;
         }
     } else {

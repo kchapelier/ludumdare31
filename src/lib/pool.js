@@ -22,8 +22,6 @@ Pool.prototype.allocate = function (number) {
         this.availableInstances.push(this.factoryFunction());
     }
 
-    //console.log(this.name, 'allocate', this.availableInstances.length);
-
     return this;
 };
 
@@ -38,8 +36,6 @@ Pool.prototype.get = function (initializationOptions) {
 
     this.initializeFunction(element, initializationOptions);
 
-    //console.log(this.name, 'get', this.availableInstances.length);
-
     return element;
 };
 
@@ -48,8 +44,6 @@ Pool.prototype.free = function (element) {
         this.availableInstances.push(element);
     }
 
-    //console.log(this.name, 'free', this.availableInstances.length);
-
     return this;
 };
 
@@ -57,8 +51,6 @@ Pool.prototype.clear = function () {
     while (this.availableInstances.length) {
         this.availableInstances.pop();
     }
-
-    //console.log(this.name, 'clear', this.availableInstances.length);
 
     return this;
 };

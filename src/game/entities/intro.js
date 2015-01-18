@@ -50,7 +50,6 @@ module.exports = GameObject.createFactory(
         render: function (element) {
         },
         setHighScore: function (scores) {
-            console.log(scores);
             this.score = scores.normal;
             this.numeralScore.set(this.score);
             this.highScoreElement.setText('Highscore: ' + this.numeralScore.format());
