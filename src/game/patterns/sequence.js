@@ -9,57 +9,54 @@ var Sequence = function (operations, repeatition) {
 
 Sequence.prototype.operations = null;
 Sequence.prototype.repeatition = null;
-Sequence.prototype.accumulatedTime = null;
+Sequence.prototype.timeCursor = null;
 Sequence.prototype.currentOperation = null;
 Sequence.prototype.currentRepeatition = null;
 
 Sequence.prototype.update = function (pattern, dt) {
-    if (!this.isComplete()) {
-        if (this.execute(pattern, this.operations[this.currentOperation], dt)) {
-            this.currentOperation++;
-
-            if (this.currentOperation >= this.operations.length) {
-                this.currentOperation = 0;
-                this.currentRepeatition++;
-            }
-        }
-
-        return true;
+    if (this.isComplete()) {
+        return false;
     }
 
-    return false;
+    this.timeCursor += dt;
+
+    while (this.timeCursor >= 0) {
+        this.execute(pattern, this.operations[this.currentOperation], this.timeCursor);
+
+        this.currentOperation++;
+
+        if (this.currentOperation >= this.operations.length) {
+            this.currentOperation = 0;
+            this.currentRepeatition++;
+        }
+    }
+
+    return true;
 };
 
-Sequence.prototype.execute = function (pattern, operation, dt) {
+Sequence.prototype.execute = function (pattern, operation, timeLag) {
     var method = operation[0],
         args = [];
 
     if (method === 'wait') {
-        this.accumulatedTime += dt;
-
-        if (this.accumulatedTime >= operation[1]) {
-            this.accumulatedTime = 0;
-            return true;
-        }
+        this.timeCursor -= operation[1];
     } else {
         for (var i = 1; i < operation.length; i++) {
             args.push(operation[i]);
         }
 
+        // TODO update the generated bullet with timeLag
+
         pattern[method].apply(pattern, args);
-
-        return true;
     }
-
-    return false;
 };
 
 Sequence.prototype.isComplete = function () {
-    return this.operations.length === 0 || (this.currentRepeatition >= this.repeatition && this.repeatition > 1);
+    return this.operations.length === 0 || (this.currentRepeatition >= this.repeatition && this.repeatition !== 0);
 };
 
 Sequence.prototype.reset = function () {
-    this.accumulatedTime = 0;
+    this.timeCursor = 0;
     this.currentOperation = 0;
     this.currentRepeatition = 0;
 };
