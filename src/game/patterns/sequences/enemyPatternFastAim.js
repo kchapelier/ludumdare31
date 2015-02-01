@@ -3,7 +3,7 @@
 var Sequence = require('../sequence');
 
 module.exports = new Sequence([
-    ['wait', 65],
+    ['wait', 120],
     ['setBulletSprite', 'small-enemy-bullet-blue'],
     ['setBulletSpeed', 350],
     ['setAngle', 0, true],
@@ -11,7 +11,7 @@ module.exports = new Sequence([
     ['burst', 18, Math.PI / 7, Math.PI / 2, false],
     ['burst', 18, Math.PI / 7, Math.PI / 2 * 2, false],
     ['burst', 18, Math.PI / 7, Math.PI / 2 * 3, false],
-    ['wait', 65],
+    ['wait', 120],
     ['setBulletSprite', 'small-enemy-bullet-negative'],
     ['setBulletSpeed', 350],
     ['setAngle', 0, true],

@@ -9,13 +9,13 @@ module.exports = new Sequence([
     ['burst', 5, 0.35, Math.PI, false],
     ['burst', 5, 0.35, Math.PI / 2, false],
     ['burst', 5, 0.35, Math.PI * 3 / 2, false],
-    ['wait', 110],
-    ['rotate', 0.1, Math.PI / 4],
+    ['wait', 150],
+    ['rotate', 0.1],
     ['setBulletSprite', 'small-enemy-bullet-red'],
     ['burst', 5, 0.35, 0, false],
     ['burst', 5, 0.35, Math.PI, false],
     ['burst', 5, 0.35, Math.PI / 2, false],
     ['burst', 5, 0.35, Math.PI * 3 / 2, false],
     ['rotate', 0.40 - Math.PI / 2],
-    ['wait', 90]
+    ['wait', 150]
 ], 70);

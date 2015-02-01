@@ -7,17 +7,17 @@ module.exports = new Sequence([
     ['setAngle', 0, true],
     ['setBulletSpeed', 130],
     ['burst', 35, Math.PI * 2, 0, false],
-    ['wait', 40],
+    ['wait', 70],
     ['setBulletSpeed', 150],
     ['burst', 35, Math.PI * 2, 0, false],
-    ['wait', 40],
+    ['wait', 70],
     ['setBulletSpeed', 170],
     ['burst', 35, Math.PI * 2, 0, false],
-    ['wait', 40],
+    ['wait', 70],
     ['setBulletSpeed', 195],
     ['burst', 35, Math.PI * 2, 0, false],
-    ['wait', 40],
+    ['wait', 70],
     ['setBulletSpeed', 220],
     ['burst', 35, Math.PI * 2, 0, false],
-    ['wait', 120]
+    ['wait', 180]
 ], 18);
