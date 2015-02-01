@@ -14,13 +14,11 @@ Sequence.prototype.currentOperation = null;
 Sequence.prototype.currentRepeatition = null;
 
 Sequence.prototype.update = function (pattern, dt) {
-    if (this.isComplete()) {
-        return false;
-    }
+    var complete;
 
     this.timeCursor += dt;
 
-    while (this.timeCursor >= 0) {
+    while (!(complete = this.isComplete()) && this.timeCursor >= 0) {
         this.execute(pattern, this.operations[this.currentOperation], this.timeCursor);
 
         this.currentOperation++;
@@ -31,7 +29,7 @@ Sequence.prototype.update = function (pattern, dt) {
         }
     }
 
-    return true;
+    return !complete;
 };
 
 Sequence.prototype.execute = function (pattern, operation, timeLag) {
