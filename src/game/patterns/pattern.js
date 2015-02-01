@@ -4,7 +4,11 @@ var Victor = require('victor'),
     collection = require('../objectCollection'),
     shotPool = require('../pools/enemyShotPool');
 
-var shot = function (position, speed, sprite, direction) {
+var shot = function (position, speed, speedRandomIncrement, sprite, direction) {
+    if(speedRandomIncrement) {
+        speed += Math.random() * speedRandomIncrement;
+    }
+
     collection.add('enemyShot', shotPool.get({
         x: position.x,
         y: position.y,
@@ -22,6 +26,7 @@ var Pattern = function (source, destination) {
 
     this.bulletSprite = 'medium-enemy-bullet-yellow';
     this.bulletSpeed = 200;
+    this.bulletSpeedRandomIncrement = 0;
 };
 
 Pattern.prototype.source = null;
@@ -31,6 +36,7 @@ Pattern.prototype.playerDirection = null;
 
 Pattern.prototype.bulletSprite = null;
 Pattern.prototype.bulletSpeed = null;
+Pattern.prototype.bulletSpeedRandomIncrement = null;
 
 Pattern.prototype.setSource = function (source) {
     this.source = source;
@@ -57,7 +63,12 @@ Pattern.prototype.rotate = function (angle) {
     this.aimDirection.rotate(angle);
 };
 
-Pattern.prototype.setBulletSpeed = function (speed) {
+Pattern.prototype.setBulletSpeed = function (speed, randomIncrement) {
+    if (typeof speed === 'function') {
+        speed = speed();
+    }
+
+    this.bulletSpeedRandomIncrement = randomIncrement;
     this.bulletSpeed = speed;
 };
 
@@ -94,7 +105,7 @@ Pattern.prototype.singleShot = function (angleDeviation, fromPlayer) {
 
     v.rotate(angleDeviation);
 
-    shot(this.source, this.bulletSpeed, this.bulletSprite, v);
+    shot(this.source, this.bulletSpeed, this.bulletSpeedRandomIncrement, this.bulletSprite, v);
 };
 
 Pattern.prototype.randomShot = function (number, angleSpread, angleDeviation, fromPlayer) {
@@ -105,7 +116,7 @@ Pattern.prototype.randomShot = function (number, angleSpread, angleDeviation, fr
     for (var i = 0; i < number; i++) {
         var vc = v.clone();
         vc.rotate(angleSpread * Math.random());
-        shot(this.source, this.bulletSpeed, this.bulletSprite, vc);
+        shot(this.source, this.bulletSpeed, this.bulletSpeedRandomIncrement, this.bulletSprite, vc);
     }
 };
 
@@ -115,7 +126,7 @@ Pattern.prototype.burst = function (number, angleSpread, angleDeviation, fromPla
     v.rotate(angleDeviation - angleSpread / 2);
 
     for (var i = 0; i < number; i++) {
-        shot(this.source, this.bulletSpeed, this.bulletSprite, v.clone());
+        shot(this.source, this.bulletSpeed, this.bulletSpeedRandomIncrement, this.bulletSprite, v.clone());
         v.rotate(angleSpread / (number - 1));
     }
 };
